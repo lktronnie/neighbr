@@ -14,15 +14,96 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
             line-height: 1.6;
-            color: #1a202c;
+            color: #e8eaed;
+            background: #202124;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(32, 33, 36, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3c4043;
+            padding: 16px 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-bar.scrolled {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3BA99C 0%, #8BC48A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #e8eaed;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #8BC48A;
+        }
+
+        .nav-cta {
+            background: #8BC48A;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: #5DD6D8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 196, 138, 0.3);
         }
 
         .hero {
-            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            background: linear-gradient(135deg, #202124 0%, #292a2d 100%);
             color: white;
-            padding: 80px 20px 100px;
+            padding: 140px 20px 120px;
             position: relative;
             overflow: hidden;
+            margin-top: 72px;
         }
 
         .hero::before {
@@ -32,9 +113,19 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
-            background-size: 50px 50px;
-            opacity: 0.3;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 169, 156, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(139, 196, 138, 0.1) 0%, transparent 50%);
+            opacity: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #3BA99C, #8BC48A, transparent);
         }
 
         .hero-content {
@@ -42,78 +133,134 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .hero-badge {
             display: inline-block;
-            background: rgba(139, 196, 138, 0.2);
+            background: rgba(139, 196, 138, 0.15);
             color: #8BC48A;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
             border: 1px solid rgba(139, 196, 138, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .hero h1 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #e8eaed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #3BA99C 0%, #8BC48A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 24px;
-            opacity: 0.95;
-            margin-bottom: 30px;
+            font-size: 22px;
+            color: #bdc1c6;
+            margin-bottom: 40px;
             font-weight: 400;
             max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            animation: fadeInUp 0.6s ease-out 0.4s backwards;
         }
 
         .hero-cta {
             display: flex;
             gap: 16px;
-            margin-top: 40px;
+            margin-top: 48px;
             flex-wrap: wrap;
+            justify-content: center;
+            animation: scaleIn 0.6s ease-out 0.6s backwards;
         }
 
         .btn-primary {
             display: inline-block;
-            background: #8BC48A;
+            background: linear-gradient(135deg, #3BA99C 0%, #8BC48A 100%);
             color: white;
-            padding: 16px 32px;
+            padding: 18px 40px;
             font-size: 18px;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: all 0.3s ease;
-            border: 2px solid #8BC48A;
+            border: none;
+            box-shadow: 0 4px 16px rgba(59, 169, 156, 0.3);
         }
 
         .btn-primary:hover {
-            background: #5DD6D8;
-            border-color: #5DD6D8;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(139, 196, 138, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(59, 169, 156, 0.4);
         }
 
         .btn-secondary {
             display: inline-block;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 16px 32px;
+            padding: 18px 40px;
             font-size: 18px;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: all 0.3s ease;
-            border: 2px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: #1e3a5f;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
         }
 
         .container {
@@ -141,22 +288,22 @@
         }
 
         .section-title {
-            font-size: 42px;
+            font-size: 48px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #1a202c;
+            color: #e8eaed;
         }
 
         .section-description {
             font-size: 20px;
-            color: #4a5568;
+            color: #bdc1c6;
             max-width: 700px;
             margin: 0 auto;
         }
 
         /* Value Proposition Section */
         .value-props {
-            background: #f7fafc;
+            background: #292a2d;
         }
 
         .value-grid {
@@ -167,16 +314,17 @@
         }
 
         .value-card {
-            background: white;
+            background: #202124;
             padding: 32px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            border: 1px solid #3c4043;
             transition: all 0.3s ease;
         }
 
         .value-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+            border-color: #8BC48A;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
         }
 
         .value-icon {
@@ -194,25 +342,28 @@
         .value-card h3 {
             font-size: 22px;
             margin-bottom: 12px;
-            color: #1a202c;
+            color: #e8eaed;
         }
 
         .value-metric {
-            font-size: 36px;
-            font-weight: 700;
-            color: #8BC48A;
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3BA99C 0%, #8BC48A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
         }
 
         .value-card p {
-            color: #4a5568;
+            color: #bdc1c6;
             line-height: 1.7;
             font-size: 16px;
         }
 
         /* Problem/Solution Section */
         .pmc-challenges {
-            background: white;
+            background: #202124;
         }
 
         .challenge-grid {
@@ -225,7 +376,7 @@
         .challenge-column h3 {
             font-size: 28px;
             margin-bottom: 24px;
-            color: #1a202c;
+            color: #e8eaed;
         }
 
         .challenge-column.problems h3 {
@@ -239,36 +390,48 @@
         .challenge-item {
             padding: 20px;
             margin-bottom: 16px;
-            border-radius: 8px;
-            background: #f7fafc;
-            border-left: 4px solid #cbd5e0;
+            border-radius: 12px;
+            background: #292a2d;
+            border-left: 4px solid #3c4043;
+            border: 1px solid #3c4043;
         }
 
         .challenge-column.problems .challenge-item {
-            border-left-color: #fc8181;
-            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+            background: rgba(252, 129, 129, 0.1);
         }
 
         .challenge-column.solutions .challenge-item {
-            border-left-color: #68d391;
-            background: #f0fff4;
+            border-left: 4px solid #68d391;
+            background: rgba(104, 211, 145, 0.1);
         }
 
         .challenge-item h4 {
             font-size: 18px;
             margin-bottom: 8px;
-            color: #1a202c;
+            color: #e8eaed;
         }
 
         .challenge-item p {
-            color: #4a5568;
+            color: #bdc1c6;
             font-size: 15px;
         }
 
         /* Product Showcase Section */
         .product-showcase {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #292a2d 0%, #202124 100%);
             color: white;
+            position: relative;
+        }
+
+        .product-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #3BA99C, #8BC48A, transparent);
         }
 
         .product-showcase .section-title {
@@ -831,11 +994,45 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="nav-bar" id="navbar">
+        <div class="nav-content">
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path d="M 30 110 L 60 80 L 60 130 L 30 130 Z" fill="#73B572" opacity="0.8"/>
+                        <rect x="30" y="110" width="30" height="20" fill="#8BC48A"/>
+                        <rect x="35" y="115" width="8" height="10" fill="#5FA05E"/>
+                        <rect x="52" y="115" width="5" height="5" fill="#5FA05E"/>
+                        <path d="M 70 90 L 100 60 L 130 90 L 130 140 L 70 140 Z" fill="#8BC48A"/>
+                        <rect x="80" y="100" width="12" height="16" fill="#5FA05E"/>
+                        <rect x="108" y="100" width="12" height="16" fill="#5FA05E"/>
+                        <rect x="92" y="116" width="16" height="24" fill="#73B572"/>
+                        <circle cx="100" cy="128" r="2" fill="#5FA05E"/>
+                        <path d="M 140 110 L 170 80 L 170 130 L 140 130 Z" fill="#73B572" opacity="0.8"/>
+                        <rect x="140" y="110" width="30" height="20" fill="#8BC48A"/>
+                        <rect x="145" y="115" width="8" height="10" fill="#5FA05E"/>
+                        <rect x="157" y="115" width="5" height="5" fill="#5FA05E"/>
+                        <line x1="60" y1="120" x2="70" y2="115" stroke="#8BC48A" stroke-width="2" opacity="0.6"/>
+                        <line x1="130" y1="115" x2="140" y2="120" stroke="#8BC48A" stroke-width="2" opacity="0.6"/>
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="#8BC48A" stroke-width="2" opacity="0.3"/>
+                    </g>
+                </svg>
+                <span class="logo-text">Neighbr</span>
+            </div>
+            <div class="nav-links">
+                <a href="#product" class="nav-link">Features</a>
+                <a href="#implementation" class="nav-link">Implementation</a>
+                <a href="#demo" class="nav-cta">Request Demo</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
             <div class="hero-badge">FOR PROPERTY MANAGEMENT COMPANIES</div>
-            <h1>Reduce Costs by 40%.<br>Increase Tenant Satisfaction by 60%.</h1>
+            <h1><span class="highlight">Reduce Costs by 40%.</span><br>Increase Tenant Satisfaction by <span class="highlight">60%</span>.</h1>
             <p class="hero-subtitle">The all-in-one digital platform that helps Hong Kong PMCs automate operations, reduce staff workload, and deliver exceptional tenant experiences.</p>
             <div class="hero-cta">
                 <a href="#demo" class="btn-primary">Request a Demo</a>
@@ -1157,5 +1354,33 @@
             <p>&copy; 2026 Neighbr. All rights reserved. | <a href="#privacy" style="color: #8BC48A;">Privacy Policy</a> | <a href="#terms" style="color: #8BC48A;">Terms of Service</a></p>
         </div>
     </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

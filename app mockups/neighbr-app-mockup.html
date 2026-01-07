@@ -57,6 +57,17 @@
       height: calc(812px - 44px - 70px);
       overflow-y: auto;
       background: #202124;
+      scroll-behavior: smooth;
+    }
+
+    /* Disable manual scrolling */
+    .app-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .app-content {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     
     .header {
@@ -601,5 +612,56 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Auto-scroll animation
+    const appContent = document.querySelector('.app-content');
+    let scrollDirection = 1; // 1 for down, -1 for up
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5; // pixels per frame
+    const pauseAtEnds = 2000; // milliseconds to pause at top/bottom
+    let isPaused = false;
+
+    function autoScroll() {
+      if (!isPaused) {
+        scrollPosition += scrollSpeed * scrollDirection;
+        appContent.scrollTop = scrollPosition;
+
+        // Check if reached bottom
+        if (scrollPosition >= appContent.scrollHeight - appContent.clientHeight) {
+          isPaused = true;
+          scrollDirection = -1;
+          setTimeout(() => {
+            isPaused = false;
+          }, pauseAtEnds);
+        }
+
+        // Check if reached top
+        if (scrollPosition <= 0) {
+          isPaused = true;
+          scrollDirection = 1;
+          setTimeout(() => {
+            isPaused = false;
+          }, pauseAtEnds);
+        }
+      }
+
+      requestAnimationFrame(autoScroll);
+    }
+
+    // Start auto-scrolling after a short delay
+    setTimeout(() => {
+      autoScroll();
+    }, 1000);
+
+    // Prevent manual scrolling
+    appContent.addEventListener('wheel', (e) => {
+      e.preventDefault();
+    }, { passive: false });
+
+    appContent.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+    }, { passive: false });
+  </script>
 </body>
 </html>

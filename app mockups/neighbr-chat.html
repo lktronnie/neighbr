@@ -122,6 +122,17 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      scroll-behavior: smooth;
+    }
+
+    /* Disable manual scrolling */
+    .app-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .app-content {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     
     .date-divider {
@@ -502,5 +513,41 @@
       <div class="send-button">📤</div>
     </div>
   </div>
+
+  <script>
+    // Auto-scroll animation
+    const appContent = document.querySelector('.app-content');
+    let scrollDirection = 1;
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5;
+    const pauseAtEnds = 2000;
+    let isPaused = false;
+
+    function autoScroll() {
+      if (!isPaused) {
+        scrollPosition += scrollSpeed * scrollDirection;
+        appContent.scrollTop = scrollPosition;
+
+        if (scrollPosition >= appContent.scrollHeight - appContent.clientHeight) {
+          isPaused = true;
+          scrollDirection = -1;
+          setTimeout(() => { isPaused = false; }, pauseAtEnds);
+        }
+
+        if (scrollPosition <= 0) {
+          isPaused = true;
+          scrollDirection = 1;
+          setTimeout(() => { isPaused = false; }, pauseAtEnds);
+        }
+      }
+
+      requestAnimationFrame(autoScroll);
+    }
+
+    setTimeout(() => { autoScroll(); }, 1000);
+
+    appContent.addEventListener('wheel', (e) => { e.preventDefault(); }, { passive: false });
+    appContent.addEventListener('touchmove', (e) => { e.preventDefault(); }, { passive: false });
+  </script>
 </body>
 </html>

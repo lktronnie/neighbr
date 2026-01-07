@@ -1,0 +1,30 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Three connected houses representing community -->
+  <g>
+    <!-- Left house -->
+    <path d="M 30 110 L 60 80 L 60 130 L 30 130 Z" fill="#73B572" opacity="0.8"/>
+    <rect x="30" y="110" width="30" height="20" fill="#8BC48A"/>
+    <rect x="35" y="115" width="8" height="10" fill="#5FA05E"/>
+    <rect x="52" y="115" width="5" height="5" fill="#5FA05E"/>
+    
+    <!-- Center house (larger, primary) -->
+    <path d="M 70 90 L 100 60 L 130 90 L 130 140 L 70 140 Z" fill="#8BC48A"/>
+    <rect x="80" y="100" width="12" height="16" fill="#5FA05E"/>
+    <rect x="108" y="100" width="12" height="16" fill="#5FA05E"/>
+    <rect x="92" y="116" width="16" height="24" fill="#73B572"/>
+    <circle cx="100" cy="128" r="2" fill="#5FA05E"/>
+    
+    <!-- Right house -->
+    <path d="M 140 110 L 170 80 L 170 130 L 140 130 Z" fill="#73B572" opacity="0.8"/>
+    <rect x="140" y="110" width="30" height="20" fill="#8BC48A"/>
+    <rect x="145" y="115" width="8" height="10" fill="#5FA05E"/>
+    <rect x="157" y="115" width="5" height="5" fill="#5FA05E"/>
+    
+    <!-- Connection lines -->
+    <line x1="60" y1="120" x2="70" y2="115" stroke="#8BC48A" stroke-width="2" opacity="0.6"/>
+    <line x1="130" y1="115" x2="140" y2="120" stroke="#8BC48A" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Circle background -->
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#8BC48A" stroke-width="2" opacity="0.3"/>
+  </g>
+</svg>
