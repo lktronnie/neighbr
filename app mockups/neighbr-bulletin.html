@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighbr - Community Board</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: #292a2d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: #202124;
+      border-radius: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .status-bar {
+      height: 44px;
+      background: #202124;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #e8eaed;
+    }
+    
+    .time {
+      font-weight: 600;
+    }
+    
+    .status-icons {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    
+    .app-header {
+      background: #292a2d;
+      border-bottom: 1px solid #3c4043;
+      padding: 12px 20px;
+    }
+    
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    
+    .header-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #e8eaed;
+    }
+    
+    .post-button {
+      width: 36px;
+      height: 36px;
+      background: #8BC48A;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      color: white;
+    }
+    
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-tab {
+      padding: 8px 16px;
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9aa0a6;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    
+    .filter-tab.active {
+      background: rgba(139, 196, 138, 0.1);
+      border-color: #8BC48A;
+      color: #8BC48A;
+    }
+    
+    .app-content {
+      height: calc(812px - 44px - 86px - 70px);
+      overflow-y: auto;
+      background: #202124;
+      padding: 16px 20px;
+    }
+    
+    .post-card {
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    
+    .post-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .post-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #3BA99C, #8BC48A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    
+    .post-info {
+      flex: 1;
+    }
+    
+    .post-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 2px;
+    }
+    
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #9aa0a6;
+    }
+    
+    .post-tag {
+      display: inline-block;
+      background: rgba(139, 196, 138, 0.15);
+      color: #8BC48A;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: auto;
+    }
+    
+    .post-content {
+      font-size: 14px;
+      color: #bdc1c6;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    
+    .post-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #303134, #3c4043);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+    
+    .post-footer {
+      display: flex;
+      gap: 20px;
+      padding-top: 12px;
+      border-top: 1px solid #3c4043;
+    }
+    
+    .post-action {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #9aa0a6;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    
+    .post-action:hover {
+      color: #8BC48A;
+    }
+    
+    .post-action.active {
+      color: #8BC48A;
+    }
+    
+    .comment-section {
+      background: #202124;
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 12px;
+    }
+    
+    .comment-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    
+    .comment-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #A78BFA, #C4B5FD);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    
+    .comment-content {
+      flex: 1;
+    }
+    
+    .comment-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 4px;
+    }
+    
+    .comment-text {
+      font-size: 13px;
+      color: #bdc1c6;
+      line-height: 1.4;
+    }
+    
+    .comment-time {
+      font-size: 11px;
+      color: #9aa0a6;
+      margin-top: 4px;
+    }
+    
+    .poll-option {
+      background: #202124;
+      border: 1px solid #3c4043;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .poll-option:last-child {
+      margin-bottom: 0;
+    }
+    
+    .poll-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: rgba(139, 196, 138, 0.15);
+      transition: width 0.3s;
+    }
+    
+    .poll-content {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .poll-text {
+      font-size: 14px;
+      color: #e8eaed;
+    }
+    
+    .poll-percent {
+      font-size: 14px;
+      font-weight: 600;
+      color: #8BC48A;
+    }
+    
+    .poll-votes {
+      font-size: 12px;
+      color: #9aa0a6;
+      margin-top: 12px;
+      text-align: center;
+    }
+    
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      background: #292a2d;
+      border-top: 1px solid #3c4043;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: all 0.2s;
+      color: #9aa0a6;
+      position: relative;
+    }
+    
+    .nav-item:hover {
+      background: #303134;
+    }
+    
+    .nav-item.active {
+      color: #8BC48A;
+    }
+    
+    .nav-icon {
+      font-size: 24px;
+    }
+    
+    .nav-label {
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .badge {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      background: #8BC48A;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="time">9:41</div>
+      <div class="status-icons">
+        <span>📶</span>
+        <span>📡</span>
+        <span>🔋</span>
+      </div>
+    </div>
+    
+    <!-- App Header -->
+    <div class="app-header">
+      <div class="header-top">
+        <div class="header-title">Community Board</div>
+        <div class="post-button">✏️</div>
+      </div>
+      <div class="filter-tabs">
+        <div class="filter-tab active">All Posts</div>
+        <div class="filter-tab">Announcements</div>
+        <div class="filter-tab">Lost & Found</div>
+        <div class="filter-tab">Recommendations</div>
+        <div class="filter-tab">Events</div>
+      </div>
+    </div>
+    
+    <!-- App Content -->
+    <div class="app-content">
+      <!-- Post with Image -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar">BM</div>
+          <div class="post-info">
+            <div class="post-author">Building Management</div>
+            <div class="post-meta">
+              <span>2 hours ago</span>
+              <span>•</span>
+              <span>Official</span>
+            </div>
+          </div>
+          <div class="post-tag">ANNOUNCEMENT</div>
+        </div>
+        <div class="post-content">
+          🚨 Fire drill scheduled for this Saturday, 10am. Please do not be alarmed by the alarm bells. Participation is mandatory. Thank you for your cooperation!
+        </div>
+        <div class="post-footer">
+          <div class="post-action active">
+            <span>👍</span>
+            <span>42</span>
+          </div>
+          <div class="post-action">
+            <span>💬</span>
+            <span>8</span>
+          </div>
+          <div class="post-action">
+            <span>📤</span>
+            <span>Share</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Post with Comments -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #A78BFA, #C4B5FD);">SC</div>
+          <div class="post-info">
+            <div class="post-author">Sarah Chen • 24A</div>
+            <div class="post-meta">
+              <span>5 hours ago</span>
+            </div>
+          </div>
+          <div class="post-tag" style="background: rgba(167, 139, 250, 0.2); color: #A78BFA;">LOST & FOUND</div>
+        </div>
+        <div class="post-content">
+          Found a set of keys near the mailroom. Has a blue keychain with "HK" on it. Please DM me if they're yours!
+        </div>
+        <div class="post-image">🔑</div>
+        <div class="post-footer">
+          <div class="post-action">
+            <span>👍</span>
+            <span>15</span>
+          </div>
+          <div class="post-action active">
+            <span>💬</span>
+            <span>5</span>
+          </div>
+          <div class="post-action">
+            <span>📤</span>
+            <span>Share</span>
+          </div>
+        </div>
+        <div class="comment-section">
+          <div class="comment-item">
+            <div class="comment-avatar">MP</div>
+            <div class="comment-content">
+              <div class="comment-author">Mike Park • 19B</div>
+              <div class="comment-text">These might be mine! I lost my keys yesterday. Will DM you.</div>
+              <div class="comment-time">2 hours ago</div>
+            </div>
+          </div>
+          <div class="comment-item">
+            <div class="comment-avatar" style="background: linear-gradient(135deg, #FBBF24, #FCD34D);">AL</div>
+            <div class="comment-content">
+              <div class="comment-author">Alex Lee • 31A</div>
+              <div class="comment-text">Thanks for posting this Sarah! Great to see neighbors helping each other 🙌</div>
+              <div class="comment-time">1 hour ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Poll Post -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #6FD6A7, #A5D6A7);">RC</div>
+          <div class="post-info">
+            <div class="post-author">Residents Committee</div>
+            <div class="post-meta">
+              <span>1 day ago</span>
+              <span>•</span>
+              <span>Poll closes in 2 days</span>
+            </div>
+          </div>
+          <div class="post-tag" style="background: rgba(111, 214, 167, 0.2); color: #6FD6A7;">POLL</div>
+        </div>
+        <div class="post-content">
+          Should we extend gym hours to 24/7? Vote below! 🏋️‍♂️
+        </div>
+        <div class="poll-option">
+          <div class="poll-bar" style="width: 68%"></div>
+          <div class="poll-content">
+            <div class="poll-text">✅ Yes, extend to 24/7</div>
+            <div class="poll-percent">68%</div>
+          </div>
+        </div>
+        <div class="poll-option">
+          <div class="poll-bar" style="width: 22%"></div>
+          <div class="poll-content">
+            <div class="poll-text">⏰ Extend to midnight only</div>
+            <div class="poll-percent">22%</div>
+          </div>
+        </div>
+        <div class="poll-option">
+          <div class="poll-bar" style="width: 10%"></div>
+          <div class="poll-content">
+            <div class="poll-text">❌ Keep current hours</div>
+            <div class="poll-percent">10%</div>
+          </div>
+        </div>
+        <div class="poll-votes">127 votes • You haven't voted yet</div>
+      </div>
+      
+      <!-- Regular Post -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar" style="background: linear-gradient(135deg, #FBBF24, #FCD34D);">JL</div>
+          <div class="post-info">
+            <div class="post-author">James Liu • 18C</div>
+            <div class="post-meta">
+              <span>2 days ago</span>
+            </div>
+          </div>
+          <div class="post-tag" style="background: rgba(111, 214, 167, 0.2); color: #6FD6A7;">RECOMMENDATION</div>
+        </div>
+        <div class="post-content">
+          Can anyone recommend a good aircon servicing company? Looking to get mine cleaned before summer. Preferably someone who has worked in The Zenith before!
+        </div>
+        <div class="post-footer">
+          <div class="post-action">
+            <span>👍</span>
+            <span>18</span>
+          </div>
+          <div class="post-action">
+            <span>💬</span>
+            <span>23</span>
+          </div>
+          <div class="post-action">
+            <span>📤</span>
+            <span>Share</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <div class="nav-item">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Home</div>
+      </div>
+      
+      <div class="nav-item active" style="position: relative;">
+        <div class="nav-icon">📋</div>
+        <div class="nav-label">Board</div>
+      </div>
+      
+      <div class="nav-item">
+        <div class="nav-icon">📅</div>
+        <div class="nav-label">Book</div>
+      </div>
+      
+      <div class="nav-item">
+        <div class="nav-icon">💬</div>
+        <div class="nav-label">Chat</div>
+      </div>
+      
+      <div class="nav-item">
+        <div class="nav-icon">👤</div>
+        <div class="nav-label">Profile</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

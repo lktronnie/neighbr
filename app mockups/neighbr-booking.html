@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighbr - Book Facility</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: #292a2d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: #202124;
+      border-radius: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .status-bar {
+      height: 44px;
+      background: #202124;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #e8eaed;
+    }
+    
+    .time {
+      font-weight: 600;
+    }
+    
+    .status-icons {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    
+    .app-header {
+      height: 60px;
+      background: #292a2d;
+      border-bottom: 1px solid #3c4043;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 12px;
+    }
+    
+    .back-button {
+      font-size: 24px;
+      cursor: pointer;
+      color: #e8eaed;
+    }
+    
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e8eaed;
+    }
+    
+    .app-content {
+      height: calc(812px - 44px - 60px);
+      overflow-y: auto;
+      background: #202124;
+      padding: 20px;
+    }
+    
+    .facility-card {
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .facility-card:hover {
+      border-color: #8BC48A;
+      transform: translateY(-2px);
+    }
+    
+    .facility-card.selected {
+      border-color: #8BC48A;
+      background: rgba(139, 196, 138, 0.1);
+    }
+    
+    .facility-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .facility-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #303134, #3c4043);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    
+    .facility-info {
+      flex: 1;
+    }
+    
+    .facility-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 4px;
+    }
+    
+    .facility-status {
+      font-size: 13px;
+      color: #9aa0a6;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6FD6A7;
+    }
+    
+    .facility-details {
+      display: flex;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #3c4043;
+    }
+    
+    .detail-item {
+      flex: 1;
+    }
+    
+    .detail-label {
+      font-size: 11px;
+      color: #9aa0a6;
+      margin-bottom: 4px;
+    }
+    
+    .detail-value {
+      font-size: 13px;
+      color: #e8eaed;
+      font-weight: 600;
+    }
+    
+    .date-selector {
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .date-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .date-nav {
+      font-size: 20px;
+      cursor: pointer;
+      color: #8BC48A;
+      padding: 4px 8px;
+    }
+    
+    .date-current {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e8eaed;
+    }
+    
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    
+    .weekday {
+      text-align: center;
+      font-size: 11px;
+      color: #9aa0a6;
+      padding: 4px;
+    }
+    
+    .dates {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    
+    .date-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #e8eaed;
+      transition: all 0.2s;
+    }
+    
+    .date-cell:hover {
+      background: #303134;
+    }
+    
+    .date-cell.inactive {
+      color: #5f6368;
+      cursor: default;
+    }
+    
+    .date-cell.inactive:hover {
+      background: transparent;
+    }
+    
+    .date-cell.selected {
+      background: #8BC48A;
+      color: white;
+      font-weight: 600;
+    }
+    
+    .date-cell.today {
+      border: 2px solid #8BC48A;
+    }
+    
+    .time-slots {
+      margin-bottom: 16px;
+    }
+    
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 12px;
+    }
+    
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    
+    .time-slot {
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 10px;
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .time-slot:hover {
+      border-color: #8BC48A;
+      background: #303134;
+    }
+    
+    .time-slot.selected {
+      border-color: #8BC48A;
+      background: rgba(139, 196, 138, 0.1);
+    }
+    
+    .time-slot.booked {
+      background: #3c4043;
+      color: #5f6368;
+      cursor: not-allowed;
+      position: relative;
+    }
+    
+    .time-slot.booked:hover {
+      border-color: #3c4043;
+      background: #3c4043;
+    }
+    
+    .time-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaed;
+    }
+    
+    .time-slot.booked .time-text {
+      color: #5f6368;
+    }
+    
+    .book-button {
+      width: 100%;
+      background: #8BC48A;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+    
+    .book-button:hover {
+      background: #5DD6D8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 196, 138, 0.25);
+    }
+    
+    .book-button:disabled {
+      background: #3c4043;
+      color: #5f6368;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .summary-box {
+      background: rgba(139, 196, 138, 0.1);
+      border: 1px solid rgba(139, 196, 138, 0.25);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .summary-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .summary-label {
+      color: #bdc1c6;
+    }
+    
+    .summary-value {
+      color: #e8eaed;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="time">9:41</div>
+      <div class="status-icons">
+        <span>📶</span>
+        <span>📡</span>
+        <span>🔋</span>
+      </div>
+    </div>
+    
+    <!-- App Header -->
+    <div class="app-header">
+      <div class="back-button">←</div>
+      <div class="header-title">Book Facility</div>
+    </div>
+    
+    <!-- App Content -->
+    <div class="app-content">
+      <!-- Facility Selection -->
+      <div class="facility-card selected">
+        <div class="facility-header">
+          <div class="facility-icon">🏊</div>
+          <div class="facility-info">
+            <div class="facility-name">Swimming Pool</div>
+            <div class="facility-status">
+              <span class="status-dot"></span>
+              <span>Available</span>
+            </div>
+          </div>
+        </div>
+        <div class="facility-details">
+          <div class="detail-item">
+            <div class="detail-label">DURATION</div>
+            <div class="detail-value">2 hours</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">CAPACITY</div>
+            <div class="detail-value">15 people</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">COST</div>
+            <div class="detail-value">Free</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="facility-card">
+        <div class="facility-header">
+          <div class="facility-icon">🏋️</div>
+          <div class="facility-info">
+            <div class="facility-name">Gym</div>
+            <div class="facility-status">
+              <span class="status-dot"></span>
+              <span>Available</span>
+            </div>
+          </div>
+        </div>
+        <div class="facility-details">
+          <div class="detail-item">
+            <div class="detail-label">DURATION</div>
+            <div class="detail-value">Flexible</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">CAPACITY</div>
+            <div class="detail-value">10 people</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">COST</div>
+            <div class="detail-value">Free</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="facility-card">
+        <div class="facility-header">
+          <div class="facility-icon">🏠</div>
+          <div class="facility-info">
+            <div class="facility-name">Function Room</div>
+            <div class="facility-status">
+              <span class="status-dot"></span>
+              <span>Available</span>
+            </div>
+          </div>
+        </div>
+        <div class="facility-details">
+          <div class="detail-item">
+            <div class="detail-label">DURATION</div>
+            <div class="detail-value">4 hours</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">CAPACITY</div>
+            <div class="detail-value">30 people</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">COST</div>
+            <div class="detail-value">HK$200</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Date Selector -->
+      <div class="section-label" style="margin-top: 24px;">Select Date</div>
+      <div class="date-selector">
+        <div class="date-header">
+          <div class="date-nav">‹</div>
+          <div class="date-current">January 2026</div>
+          <div class="date-nav">›</div>
+        </div>
+        <div class="weekdays">
+          <div class="weekday">S</div>
+          <div class="weekday">M</div>
+          <div class="weekday">T</div>
+          <div class="weekday">W</div>
+          <div class="weekday">T</div>
+          <div class="weekday">F</div>
+          <div class="weekday">S</div>
+        </div>
+        <div class="dates">
+          <div class="date-cell inactive">29</div>
+          <div class="date-cell inactive">30</div>
+          <div class="date-cell inactive">31</div>
+          <div class="date-cell">1</div>
+          <div class="date-cell">2</div>
+          <div class="date-cell">3</div>
+          <div class="date-cell">4</div>
+          <div class="date-cell">5</div>
+          <div class="date-cell today">6</div>
+          <div class="date-cell">7</div>
+          <div class="date-cell">8</div>
+          <div class="date-cell">9</div>
+          <div class="date-cell">10</div>
+          <div class="date-cell">11</div>
+          <div class="date-cell selected">12</div>
+          <div class="date-cell">13</div>
+          <div class="date-cell">14</div>
+          <div class="date-cell">15</div>
+          <div class="date-cell">16</div>
+          <div class="date-cell">17</div>
+          <div class="date-cell">18</div>
+          <div class="date-cell">19</div>
+          <div class="date-cell">20</div>
+          <div class="date-cell">21</div>
+          <div class="date-cell">22</div>
+          <div class="date-cell">23</div>
+          <div class="date-cell">24</div>
+          <div class="date-cell">25</div>
+          <div class="date-cell">26</div>
+          <div class="date-cell">27</div>
+          <div class="date-cell">28</div>
+          <div class="date-cell">29</div>
+          <div class="date-cell">30</div>
+          <div class="date-cell">31</div>
+        </div>
+      </div>
+      
+      <!-- Time Slots -->
+      <div class="time-slots">
+        <div class="section-label">Select Time Slot</div>
+        <div class="time-grid">
+          <div class="time-slot booked">
+            <div class="time-text">8:00 AM</div>
+          </div>
+          <div class="time-slot booked">
+            <div class="time-text">10:00 AM</div>
+          </div>
+          <div class="time-slot booked">
+            <div class="time-text">12:00 PM</div>
+          </div>
+          <div class="time-slot selected">
+            <div class="time-text">2:00 PM</div>
+          </div>
+          <div class="time-slot">
+            <div class="time-text">4:00 PM</div>
+          </div>
+          <div class="time-slot">
+            <div class="time-text">6:00 PM</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Booking Summary -->
+      <div class="summary-box">
+        <div class="summary-item">
+          <span class="summary-label">Facility</span>
+          <span class="summary-value">Swimming Pool</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Date</span>
+          <span class="summary-value">Sun, Jan 12, 2026</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Time</span>
+          <span class="summary-value">2:00 PM - 4:00 PM</span>
+        </div>
+      </div>
+      
+      <!-- Book Button -->
+      <button class="book-button">Confirm Booking</button>
+    </div>
+  </div>
+</body>
+</html>

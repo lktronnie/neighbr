@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighbr App - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: #292a2d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: #202124;
+      border-radius: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .status-bar {
+      height: 44px;
+      background: #202124;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #e8eaed;
+    }
+    
+    .time {
+      font-weight: 600;
+    }
+    
+    .status-icons {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    
+    .app-content {
+      height: calc(812px - 44px - 70px);
+      overflow-y: auto;
+      background: #202124;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #3BA99C 0%, #8BC48A 100%);
+      color: white;
+      padding: 24px 20px;
+      border-radius: 0 0 24px 24px;
+    }
+    
+    .welcome-text {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+    
+    .building-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .unit-number {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .quick-actions {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: -30px;
+    }
+    
+    .action-card {
+      background: #292a2d;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid #3c4043;
+    }
+    
+    .action-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(139, 196, 138, 0.15);
+      border-color: #8BC48A;
+      background: #303134;
+    }
+    
+    .action-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+    
+    .action-card.maintenance .action-icon {
+      background: linear-gradient(135deg, #FFE5DB 0%, #FFD4C4 100%);
+    }
+    
+    .action-card.facilities .action-icon {
+      background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    }
+    
+    .action-card.bulletin .action-icon {
+      background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+    }
+    
+    .action-card.management .action-icon {
+      background: linear-gradient(135deg, #FFF9E6 0%, #FFECB3 100%);
+    }
+    
+    .action-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 4px;
+    }
+    
+    .action-subtitle {
+      font-size: 12px;
+      color: #9aa0a6;
+      line-height: 1.4;
+    }
+    
+    .section {
+      margin: 20px 20px 0 20px;
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e8eaed;
+    }
+    
+    .see-all {
+      font-size: 14px;
+      color: #8BC48A;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .bulletin-card {
+      background: #292a2d;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      border: 1px solid #3c4043;
+    }
+    
+    .bulletin-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .bulletin-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #3BA99C, #8BC48A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    
+    .bulletin-info {
+      flex: 1;
+    }
+    
+    .bulletin-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 2px;
+    }
+    
+    .bulletin-time {
+      font-size: 12px;
+      color: #9aa0a6;
+    }
+    
+    .bulletin-tag {
+      display: inline-block;
+      background: rgba(139, 196, 138, 0.15);
+      color: #8BC48A;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: auto;
+    }
+    
+    .bulletin-content {
+      font-size: 14px;
+      color: #bdc1c6;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    
+    .bulletin-footer {
+      display: flex;
+      gap: 16px;
+      padding-top: 8px;
+      border-top: 1px solid #3c4043;
+    }
+    
+    .bulletin-action {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #9aa0a6;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    
+    .bulletin-action:hover {
+      color: #8BC48A;
+    }
+    
+    .upcoming-bookings {
+      background: #292a2d;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      border: 1px solid #3c4043;
+    }
+    
+    .booking-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      background: #202124;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+    
+    .booking-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .booking-date {
+      text-align: center;
+      padding: 8px;
+      background: #292a2d;
+      border-radius: 10px;
+      min-width: 60px;
+      border: 1px solid #3c4043;
+    }
+    
+    .booking-day {
+      font-size: 24px;
+      font-weight: 700;
+      color: #8BC48A;
+      line-height: 1;
+    }
+    
+    .booking-month {
+      font-size: 11px;
+      color: #9aa0a6;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    
+    .booking-details {
+      flex: 1;
+    }
+    
+    .booking-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 4px;
+    }
+    
+    .booking-time {
+      font-size: 12px;
+      color: #9aa0a6;
+    }
+    
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      background: #292a2d;
+      border-top: 1px solid #3c4043;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: all 0.2s;
+      color: #9aa0a6;
+    }
+    
+    .nav-item:hover {
+      background: #303134;
+    }
+    
+    .nav-item.active {
+      color: #8BC48A;
+    }
+    
+    .nav-icon {
+      font-size: 24px;
+    }
+    
+    .nav-label {
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .badge {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      background: #8BC48A;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 24px;
+      color: #9aa0a6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="time">9:41</div>
+      <div class="status-icons">
+        <span>📶</span>
+        <span>📡</span>
+        <span>🔋</span>
+      </div>
+    </div>
+    
+    <!-- App Content -->
+    <div class="app-content">
+      <!-- Header -->
+      <div class="header">
+        <div class="welcome-text">Welcome back, Ronnie</div>
+        <div class="building-name">The Zenith</div>
+        <div class="unit-number">Tower 1 • Unit 31B</div>
+      </div>
+      
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <div class="action-card maintenance">
+          <div class="action-icon">🔧</div>
+          <div class="action-title">Maintenance</div>
+          <div class="action-subtitle">Report an issue</div>
+        </div>
+        
+        <div class="action-card facilities">
+          <div class="action-icon">📅</div>
+          <div class="action-title">Book Facility</div>
+          <div class="action-subtitle">Reserve amenities</div>
+        </div>
+        
+        <div class="action-card bulletin">
+          <div class="action-icon">📋</div>
+          <div class="action-title">Bulletin Board</div>
+          <div class="action-subtitle">Community posts</div>
+        </div>
+        
+        <div class="action-card management">
+          <div class="action-icon">⚠️</div>
+          <div class="action-title">Report Issue</div>
+          <div class="action-subtitle">Flag a problem</div>
+        </div>
+      </div>
+      
+      <!-- Bulletin Board Section -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Community Board</div>
+          <div class="see-all">See all</div>
+        </div>
+        
+        <div class="bulletin-card">
+          <div class="bulletin-header">
+            <div class="bulletin-avatar">BM</div>
+            <div class="bulletin-info">
+              <div class="bulletin-author">Building Management</div>
+              <div class="bulletin-time">2 hours ago</div>
+            </div>
+            <div class="bulletin-tag">ANNOUNCEMENT</div>
+          </div>
+          <div class="bulletin-content">
+            🚨 Fire drill scheduled for this Saturday, 10am. Please do not be alarmed by the alarm bells. Thank you for your cooperation.
+          </div>
+          <div class="bulletin-footer">
+            <div class="bulletin-action">
+              <span>👍</span>
+              <span>24</span>
+            </div>
+            <div class="bulletin-action">
+              <span>💬</span>
+              <span>5</span>
+            </div>
+            <div class="bulletin-action">
+              <span>🔔</span>
+              <span>Save</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bulletin-card">
+          <div class="bulletin-header">
+            <div class="bulletin-avatar" style="background: linear-gradient(135deg, #A78BFA, #C4B5FD);">SC</div>
+            <div class="bulletin-info">
+              <div class="bulletin-author">Sarah Chen • 24A</div>
+              <div class="bulletin-time">5 hours ago</div>
+            </div>
+            <div class="bulletin-tag" style="background: rgba(139, 196, 138, 0.15); color: #8BC48A;">LOST & FOUND</div>
+          </div>
+          <div class="bulletin-content">
+            Found a set of keys near the mailroom. Has a blue keychain with "HK" on it. Please contact me if they're yours!
+          </div>
+          <div class="bulletin-footer">
+            <div class="bulletin-action">
+              <span>👍</span>
+              <span>8</span>
+            </div>
+            <div class="bulletin-action">
+              <span>💬</span>
+              <span>3</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bulletin-card">
+          <div class="bulletin-header">
+            <div class="bulletin-avatar" style="background: linear-gradient(135deg, #FBBF24, #FCD34D);">JL</div>
+            <div class="bulletin-info">
+              <div class="bulletin-author">James Liu • 18C</div>
+              <div class="bulletin-time">1 day ago</div>
+            </div>
+            <div class="bulletin-tag" style="background: rgba(167, 139, 250, 0.2); color: #A78BFA;">RECOMMENDATION</div>
+          </div>
+          <div class="bulletin-content">
+            Can anyone recommend a good aircon servicing company? Looking to get mine cleaned before summer.
+          </div>
+          <div class="bulletin-footer">
+            <div class="bulletin-action">
+              <span>👍</span>
+              <span>12</span>
+            </div>
+            <div class="bulletin-action">
+              <span>💬</span>
+              <span>15</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Upcoming Bookings Section -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Your Bookings</div>
+          <div class="see-all">View all</div>
+        </div>
+        
+        <div class="upcoming-bookings">
+          <div class="booking-item">
+            <div class="booking-date">
+              <div class="booking-day">12</div>
+              <div class="booking-month">JAN</div>
+            </div>
+            <div class="booking-details">
+              <div class="booking-title">🏊 Swimming Pool</div>
+              <div class="booking-time">Saturday • 2:00 PM - 4:00 PM</div>
+            </div>
+          </div>
+          
+          <div class="booking-item">
+            <div class="booking-date">
+              <div class="booking-day">18</div>
+              <div class="booking-month">JAN</div>
+            </div>
+            <div class="booking-details">
+              <div class="booking-title">🏠 Function Room</div>
+              <div class="booking-time">Friday • 7:00 PM - 11:00 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Recent Activity Section -->
+      <div class="section" style="margin-bottom: 20px;">
+        <div class="section-header">
+          <div class="section-title">Recent Activity</div>
+        </div>
+        
+        <div class="upcoming-bookings">
+          <div class="booking-item">
+            <div style="font-size: 24px; width: 40px; text-align: center;">✅</div>
+            <div class="booking-details">
+              <div class="booking-title">Maintenance Request Completed</div>
+              <div class="booking-time">AC repair in bedroom • Completed yesterday</div>
+            </div>
+          </div>
+          
+          <div class="booking-item">
+            <div style="font-size: 24px; width: 40px; text-align: center;">💳</div>
+            <div class="booking-details">
+              <div class="booking-title">Payment Confirmed</div>
+              <div class="booking-time">Management fee for January • HK$3,500</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <div class="nav-item active">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Home</div>
+      </div>
+      
+      <div class="nav-item" style="position: relative;">
+        <div class="nav-icon">📋</div>
+        <div class="nav-label">Board</div>
+        <div class="badge">3</div>
+      </div>
+      
+      <div class="nav-item">
+        <div class="nav-icon">📅</div>
+        <div class="nav-label">Book</div>
+      </div>
+      
+      <div class="nav-item">
+        <div class="nav-icon">💬</div>
+        <div class="nav-label">Chat</div>
+      </div>
+      
+      <div class="nav-item">
+        <div class="nav-icon">👤</div>
+        <div class="nav-label">Profile</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

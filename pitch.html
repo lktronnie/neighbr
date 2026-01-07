@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighbr - Property Management Platform for Hong Kong PMCs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            color: white;
+            padding: 80px 20px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(139, 196, 138, 0.2);
+            color: #8BC48A;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(139, 196, 138, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            font-weight: 400;
+            max-width: 800px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #8BC48A;
+            color: white;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid #8BC48A;
+        }
+
+        .btn-primary:hover {
+            background: #5DD6D8;
+            border-color: #5DD6D8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 196, 138, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #1e3a5f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            color: #8BC48A;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .section-description {
+            font-size: 20px;
+            color: #4a5568;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Value Proposition Section */
+        .value-props {
+            background: #f7fafc;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #8BC48A 0%, #5DD6D8 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .value-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #1a202c;
+        }
+
+        .value-metric {
+            font-size: 36px;
+            font-weight: 700;
+            color: #8BC48A;
+            margin-bottom: 8px;
+        }
+
+        .value-card p {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Problem/Solution Section */
+        .pmc-challenges {
+            background: white;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .challenge-column h3 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: #1a202c;
+        }
+
+        .challenge-column.problems h3 {
+            color: #e53e3e;
+        }
+
+        .challenge-column.solutions h3 {
+            color: #38a169;
+        }
+
+        .challenge-item {
+            padding: 20px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            background: #f7fafc;
+            border-left: 4px solid #cbd5e0;
+        }
+
+        .challenge-column.problems .challenge-item {
+            border-left-color: #fc8181;
+            background: #fff5f5;
+        }
+
+        .challenge-column.solutions .challenge-item {
+            border-left-color: #68d391;
+            background: #f0fff4;
+        }
+
+        .challenge-item h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #1a202c;
+        }
+
+        .challenge-item p {
+            color: #4a5568;
+            font-size: 15px;
+        }
+
+        /* Product Showcase Section */
+        .product-showcase {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .product-showcase .section-title {
+            color: white;
+        }
+
+        .product-showcase .section-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .product-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .feature-benefit {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            color: #8BC48A;
+        }
+
+        /* App Mockups Section */
+        .app-mockups {
+            background: #1a202c;
+            color: white;
+        }
+
+        .app-mockups .section-title {
+            color: white;
+        }
+
+        .app-mockups .section-description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .mockup-card {
+            background: #2d3748;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .mockup-screen {
+            background: #202124;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #3c4043;
+            overflow: hidden;
+        }
+
+        .mockup-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: scale(1);
+            transform-origin: center center;
+        }
+
+        .mockup-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .mockup-card p {
+            color: #a0aec0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ROI Section */
+        .roi-section {
+            background: white;
+        }
+
+        .roi-calculator {
+            background: linear-gradient(135deg, #f7fafc 0%, #e6fffa 100%);
+            border-radius: 16px;
+            padding: 50px;
+            margin-top: 40px;
+            border: 2px solid #8BC48A;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .roi-item {
+            text-align: center;
+        }
+
+        .roi-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #8BC48A;
+            margin-bottom: 8px;
+        }
+
+        .roi-label {
+            font-size: 16px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .roi-description {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 8px;
+        }
+
+        .roi-formula {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .roi-formula h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1a202c;
+        }
+
+        .roi-formula p {
+            font-size: 15px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        /* Implementation Section */
+        .implementation {
+            background: #f7fafc;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #8BC48A 0%, #5DD6D8 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8BC48A 0%, #5DD6D8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: 4px solid #f7fafc;
+        }
+
+        .timeline-content h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #1a202c;
+        }
+
+        .timeline-duration {
+            color: #8BC48A;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .timeline-content p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .timeline-content ul {
+            margin-top: 16px;
+            padding-left: 20px;
+        }
+
+        .timeline-content li {
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: #8BC48A;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .pricing-card.featured {
+            border-color: #8BC48A;
+            border-width: 3px;
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #8BC48A;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: #1a202c;
+        }
+
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #8BC48A;
+            margin: 20px 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 18px;
+            color: #718096;
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 15px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #8BC48A;
+            font-weight: 700;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: #f7fafc;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .trust-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .trust-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #8BC48A 0%, #5DD6D8 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .trust-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #1a202c;
+        }
+
+        .trust-card p {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 22px;
+            opacity: 0.95;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 16px 20px;
+            font-size: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cta-input:focus {
+            outline: none;
+            border-color: #8BC48A;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #8BC48A;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .footer-section a:hover {
+            color: #8BC48A;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2d3748;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-description {
+                font-size: 16px;
+            }
+
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                padding-left: 80px;
+            }
+
+            .timeline-number {
+                left: 30px;
+                transform: none;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">FOR PROPERTY MANAGEMENT COMPANIES</div>
+            <h1>Reduce Costs by 40%.<br>Increase Tenant Satisfaction by 60%.</h1>
+            <p class="hero-subtitle">The all-in-one digital platform that helps Hong Kong PMCs automate operations, reduce staff workload, and deliver exceptional tenant experiences.</p>
+            <div class="hero-cta">
+                <a href="#demo" class="btn-primary">Request a Demo</a>
+                <a href="#product" class="btn-secondary">See the Platform</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Value Proposition Section -->
+    <div class="section value-props">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Why PMCs Choose Neighbr</div>
+                <h2 class="section-title">Measurable Impact on Your Bottom Line</h2>
+                <p class="section-description">Join forward-thinking property management companies reducing costs while improving tenant retention and satisfaction.</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">💰</div>
+                    <div class="value-metric">40%</div>
+                    <h3>Lower Operating Costs</h3>
+                    <p>Automate manual workflows, reduce phone calls, eliminate paper notices, and cut administrative overhead significantly.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <div class="value-metric">60%</div>
+                    <h3>Faster Response Times</h3>
+                    <p>Streamlined maintenance ticketing and facility booking reduce staff workload and improve tenant satisfaction scores.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">📊</div>
+                    <div class="value-metric">100%</div>
+                    <h3>Data Visibility</h3>
+                    <p>Real-time analytics on maintenance trends, facility usage, and tenant engagement help you make data-driven decisions.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">👥</div>
+                    <div class="value-metric">25%</div>
+                    <h3>Higher Tenant Retention</h3>
+                    <p>Happy tenants stay longer. Our platform improves communication and service delivery, reducing costly turnover.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PMC Challenges Section -->
+    <div class="section pmc-challenges">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">The PMC Reality</div>
+                <h2 class="section-title">Stop Struggling. Start Scaling.</h2>
+            </div>
+            <div class="challenge-grid">
+                <div class="challenge-column problems">
+                    <h3>Your Current Challenges</h3>
+                    <div class="challenge-item">
+                        <h4>Staff Burnout & High Turnover</h4>
+                        <p>Your team spends hours on phone calls, WhatsApp messages, and manual paperwork instead of value-added work.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>Rising Operational Costs</h4>
+                        <p>Labor costs increase yearly while profit margins shrink. You need to do more with less.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>Tenant Complaints & Churn</h4>
+                        <p>Slow response times, poor communication, and missed maintenance requests damage your reputation and increase vacancy rates.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>No Operational Visibility</h4>
+                        <p>You lack data on maintenance trends, facility utilization, and tenant satisfaction. Making strategic decisions is guesswork.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>Difficult to Scale</h4>
+                        <p>Adding new buildings means hiring more staff. Your current manual processes don't scale.</p>
+                    </div>
+                </div>
+
+                <div class="challenge-column solutions">
+                    <h3>How Neighbr Solves This</h3>
+                    <div class="challenge-item">
+                        <h4>Automated Workflows</h4>
+                        <p>Self-service booking, digital maintenance ticketing, and automated announcements free your team to focus on high-value tasks.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>Reduce Staff Overhead by 30-40%</h4>
+                        <p>One staff member can manage what previously took three. Proven ROI within 6 months.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>Improve Tenant Satisfaction by 60%</h4>
+                        <p>24/7 self-service, real-time tracking, and instant communication make tenants happier and more likely to renew.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>Comprehensive Analytics Dashboard</h4>
+                        <p>Track every metric that matters: response times, facility usage, maintenance costs, and tenant engagement—all in real-time.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h4>Scale Without Hiring</h4>
+                        <p>Manage 10 buildings or 100 with the same platform. Our pricing scales with you, not your headcount.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Features Section -->
+    <div class="section product-showcase">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle" style="color: #8BC48A;">Complete Platform</div>
+                <h2 class="section-title">Everything Your PMC Needs in One System</h2>
+                <p class="section-description">Replace fragmented tools and manual processes with a unified platform designed specifically for Hong Kong property management.</p>
+            </div>
+            <div class="product-features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Smart Maintenance Management</h3>
+                    <p>Tenants submit issues with photos. You track progress, assign vendors, and monitor resolution times. Auto-notifications keep everyone informed.</p>
+                    <div class="feature-benefit">PMC Benefit: 50% faster resolution times, better vendor accountability</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Automated Facility Booking</h3>
+                    <p>24/7 self-service booking with real-time availability. Auto-confirmations, reminders, and cancellation management. No more phone tag.</p>
+                    <div class="feature-benefit">PMC Benefit: Eliminate booking conflicts, reduce front desk hours by 70%</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📢</div>
+                    <h3>Instant Announcements</h3>
+                    <p>Broadcast critical updates to all tenants instantly. Push notifications ensure 95%+ read rates within hours. No more paper notices.</p>
+                    <div class="feature-benefit">PMC Benefit: Save HK$500+/month on printing, 100% delivery confirmation</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Centralized Communication</h3>
+                    <p>All tenant messages in one organized inbox. Message history, attachment support, and auto-routing to the right department.</p>
+                    <div class="feature-benefit">PMC Benefit: End WhatsApp chaos, improve response time tracking</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Management Dashboard</h3>
+                    <p>Real-time analytics on maintenance costs, facility utilization, response times, and tenant satisfaction. Export reports for building owners.</p>
+                    <div class="feature-benefit">PMC Benefit: Data-driven decisions, impress building owners with metrics</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Features</h3>
+                    <p>Building bulletin board, polls, and neighbor connections create vibrant communities. Happy tenants renew leases.</p>
+                    <div class="feature-benefit">PMC Benefit: 25% higher tenant retention, reduced vacancy costs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Mockups Section -->
+    <div class="section app-mockups" id="product">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle" style="color: #8BC48A;">See It In Action</div>
+                <h2 class="section-title">Beautiful, Intuitive Interface Your Tenants Will Love</h2>
+                <p class="section-description">Modern design that drives adoption. 85% of tenants actively use the app within the first month.</p>
+            </div>
+            <div class="mockup-grid">
+                <div class="mockup-card">
+                    <div class="mockup-screen">
+                        <iframe src="app mockups/neighbr-app-mockup.html" scrolling="no"></iframe>
+                    </div>
+                    <h3>Tenant Dashboard</h3>
+                    <p>Clean home screen with quick access to all features. Personalized for each resident with their bookings and activity.</p>
+                </div>
+                <div class="mockup-card">
+                    <div class="mockup-screen">
+                        <iframe src="app mockups/neighbr-maintenance.html" scrolling="no"></iframe>
+                    </div>
+                    <h3>Maintenance Reporting</h3>
+                    <p>Simple form with photo upload, priority selection, and real-time status tracking. Tenants love the transparency.</p>
+                </div>
+                <div class="mockup-card">
+                    <div class="mockup-screen">
+                        <iframe src="app mockups/neighbr-booking.html" scrolling="no"></iframe>
+                    </div>
+                    <h3>Facility Booking</h3>
+                    <p>Visual calendar with instant availability. Book in 3 taps. Automatic confirmations and reminders reduce no-shows.</p>
+                </div>
+                <div class="mockup-card">
+                    <div class="mockup-screen">
+                        <iframe src="app mockups/neighbr-bulletin.html" scrolling="no"></iframe>
+                    </div>
+                    <h3>Community Board</h3>
+                    <p>Announcements, polls, and neighbor posts in one feed. Filters by category. Increases tenant engagement.</p>
+                </div>
+                <div class="mockup-card">
+                    <div class="mockup-screen">
+                        <iframe src="app mockups/neighbr-chat.html" scrolling="no"></iframe>
+                    </div>
+                    <h3>Direct Messaging</h3>
+                    <p>Secure chat with building management. Message history, quick replies, and attachment support for documents.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Implementation Timeline -->
+    <div class="section implementation" id="implementation">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Fast Onboarding</div>
+                <h2 class="section-title">Live in 2 Weeks. Zero Hassle.</h2>
+                <p class="section-description">Get your buildings onboarded quickly with our streamlined setup process.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Setup & Configuration</h3>
+                        <div class="timeline-duration">Week 1</div>
+                        <p>We configure your buildings, import tenant data, and customize the platform to match your branding.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Launch & Support</h3>
+                        <div class="timeline-duration">Week 2</div>
+                        <p>Train your team, roll out to tenants with ready-made materials, and go live with dedicated support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust & Security Section -->
+    <div class="section trust-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Enterprise-Grade Security</div>
+                <h2 class="section-title">Your Data is Safe With Us</h2>
+                <p class="section-description">We take security and compliance seriously. Bank-level encryption protects your tenants' information.</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">🔒</div>
+                    <h3>Data Security</h3>
+                    <p>End-to-end encryption, secure cloud hosting on AWS Hong Kong, regular security audits, and SOC 2 Type II compliance.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🇭🇰</div>
+                    <h3>PDPO Compliant</h3>
+                    <p>Full compliance with Hong Kong Personal Data Privacy Ordinance. Your tenants' data stays in Hong Kong and is never shared.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">⚡</div>
+                    <h3>99.9% Uptime</h3>
+                    <p>Redundant infrastructure ensures your platform is always available. We monitor 24/7 and resolve issues proactively.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">📞</div>
+                    <h3>Local Support</h3>
+                    <p>Hong Kong-based support team available in Cantonese, English, and Mandarin. We understand local PMC needs.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🔄</div>
+                    <h3>Regular Backups</h3>
+                    <p>Automated daily backups with 30-day retention. Disaster recovery plan ensures you never lose critical data.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">📈</div>
+                    <h3>Proven Track Record</h3>
+                    <p>Trusted by leading PMCs managing over 10,000 units across Hong Kong. See measurable results within months.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section" id="demo">
+        <div class="container">
+            <h2>Ready to Transform Your Property Management?</h2>
+            <p>Join forward-thinking PMCs reducing costs and delighting tenants. Book a personalized demo today.</p>
+            <div class="cta-form">
+                <input type="email" class="cta-input" placeholder="Your work email">
+                <a href="mailto:partners@neighbr.hk?subject=Demo Request&body=Please schedule a demo for our property management company." class="btn-primary">Request Demo</a>
+            </div>
+            <p style="margin-top: 30px; font-size: 16px; opacity: 0.8;">
+                Or call us: +852 XXXX XXXX (Cantonese, English, Mandarin)
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Neighbr</h4>
+                <p>The modern property management platform built specifically for Hong Kong PMCs.</p>
+                <p style="margin-top: 20px;">Building better communities, one building at a time.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="#product">Features</a>
+                <a href="#implementation">Implementation</a>
+                <a href="#demo">Request Demo</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#about">About Us</a>
+                <a href="#case-studies">Case Studies</a>
+                <a href="#support">Support</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: partners@neighbr.hk</p>
+                <p>Phone: +852 XXXX XXXX</p>
+                <p>Office: Hong Kong</p>
+                <p style="margin-top: 12px;">Support: Available 24/7</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Neighbr. All rights reserved. | <a href="#privacy" style="color: #8BC48A;">Privacy Policy</a> | <a href="#terms" style="color: #8BC48A;">Terms of Service</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,42 +1,41 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Data files
+*.csv
+*.xml
+dataset_page.html
+names_of_buildings.html
+rvd_main.html
 
-# testing
-/coverage
+# Python scripts (data processing - not needed for website)
+check_endpoints.py
+enrich_100_test.py
+enrich_local_match.py
+inspect_had_households.py
+inspect_had_service.py
+scan_had_services.py
+scrape_buildings.py
+scrape_had_households.py
 
-# next.js
-/.next/
-/out/
+# Environment variables
+.env
+.env.local
+.env.*.local
 
-# production
-/build
+# Node modules
+node_modules/
+neighbr/node_modules/
 
-# misc
-.DS_Store
-*.pem
+# Next.js
+.next/
+out/
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-!.env.local.example
-
-# vercel
+# Vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# OS
+.DS_Store
+Thumbs.db

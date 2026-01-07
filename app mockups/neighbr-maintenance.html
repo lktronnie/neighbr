@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighbr - Maintenance Request</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: #292a2d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: #202124;
+      border-radius: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .status-bar {
+      height: 44px;
+      background: #202124;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #e8eaed;
+    }
+    
+    .time {
+      font-weight: 600;
+    }
+    
+    .status-icons {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    
+    .app-header {
+      height: 60px;
+      background: #292a2d;
+      border-bottom: 1px solid #3c4043;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 12px;
+    }
+    
+    .back-button {
+      font-size: 24px;
+      cursor: pointer;
+      color: #e8eaed;
+    }
+    
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e8eaed;
+    }
+    
+    .app-content {
+      height: calc(812px - 44px - 60px);
+      overflow-y: auto;
+      background: #202124;
+      padding: 20px;
+    }
+    
+    .form-section {
+      margin-bottom: 24px;
+    }
+    
+    .form-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8eaed;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .form-input {
+      width: 100%;
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      color: #e8eaed;
+      font-family: inherit;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #8BC48A;
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    
+    .category-btn {
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    
+    .category-btn:hover {
+      border-color: #8BC48A;
+      background: #303134;
+    }
+    
+    .category-btn.active {
+      border-color: #8BC48A;
+      background: rgba(139, 196, 138, 0.1);
+    }
+    
+    .category-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    
+    .category-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e8eaed;
+    }
+    
+    .upload-area {
+      background: #292a2d;
+      border: 2px dashed #3c4043;
+      border-radius: 12px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.2s;
+    }
+    
+    .upload-area:hover {
+      border-color: #8BC48A;
+      background: #303134;
+    }
+    
+    .upload-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    
+    .upload-text {
+      font-size: 14px;
+      color: #bdc1c6;
+      margin-bottom: 4px;
+    }
+    
+    .upload-hint {
+      font-size: 12px;
+      color: #9aa0a6;
+    }
+    
+    .priority-selector {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    
+    .priority-btn {
+      flex: 1;
+      padding: 12px;
+      background: #292a2d;
+      border: 1px solid #3c4043;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    
+    .priority-btn.low {
+      color: #6FD6A7;
+    }
+    
+    .priority-btn.medium {
+      color: #FFB86C;
+    }
+    
+    .priority-btn.high {
+      color: #E89393;
+    }
+    
+    .priority-btn.active {
+      border-width: 2px;
+    }
+    
+    .priority-btn.low.active {
+      border-color: #6FD6A7;
+      background: rgba(111, 214, 167, 0.15);
+    }
+    
+    .priority-btn.medium.active {
+      border-color: #FFB86C;
+      background: rgba(255, 184, 108, 0.15);
+    }
+    
+    .priority-btn.high.active {
+      border-color: #E89393;
+      background: rgba(232, 147, 147, 0.15);
+    }
+    
+    .priority-label {
+      font-size: 13px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+    
+    .priority-time {
+      font-size: 11px;
+      color: #9aa0a6;
+    }
+    
+    .submit-button {
+      width: 100%;
+      background: #8BC48A;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 24px;
+    }
+    
+    .submit-button:hover {
+      background: #5DD6D8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 196, 138, 0.25);
+    }
+    
+    .info-box {
+      background: rgba(139, 196, 138, 0.1);
+      border: 1px solid rgba(139, 196, 138, 0.25);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+    
+    .info-text {
+      font-size: 12px;
+      color: #bdc1c6;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="time">9:41</div>
+      <div class="status-icons">
+        <span>📶</span>
+        <span>📡</span>
+        <span>🔋</span>
+      </div>
+    </div>
+    
+    <!-- App Header -->
+    <div class="app-header">
+      <div class="back-button">←</div>
+      <div class="header-title">Report Maintenance Issue</div>
+    </div>
+    
+    <!-- App Content -->
+    <div class="app-content">
+      <!-- Category Selection -->
+      <div class="form-section">
+        <label class="form-label">What needs fixing?</label>
+        <div class="category-grid">
+          <div class="category-btn active">
+            <div class="category-icon">❄️</div>
+            <div class="category-label">AC/Heating</div>
+          </div>
+          <div class="category-btn">
+            <div class="category-icon">💧</div>
+            <div class="category-label">Plumbing</div>
+          </div>
+          <div class="category-btn">
+            <div class="category-icon">💡</div>
+            <div class="category-label">Electrical</div>
+          </div>
+          <div class="category-btn">
+            <div class="category-icon">🚪</div>
+            <div class="category-label">Door/Lock</div>
+          </div>
+          <div class="category-btn">
+            <div class="category-icon">🪟</div>
+            <div class="category-label">Windows</div>
+          </div>
+          <div class="category-btn">
+            <div class="category-icon">🔧</div>
+            <div class="category-label">Other</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Location -->
+      <div class="form-section">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-input" value="Unit 31B - Bedroom" placeholder="e.g., Living room, Kitchen">
+      </div>
+      
+      <!-- Description -->
+      <div class="form-section">
+        <label class="form-label">Description</label>
+        <textarea class="form-input form-textarea" placeholder="Please describe the issue in detail...">AC not cooling properly. Temperature set to 18°C but room stays warm. Started yesterday.</textarea>
+      </div>
+      
+      <!-- Photo Upload -->
+      <div class="form-section">
+        <label class="form-label">Photos (Optional)</label>
+        <div class="upload-area">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text">Tap to add photos</div>
+          <div class="upload-hint">Helps us understand the problem better</div>
+        </div>
+      </div>
+      
+      <!-- Priority -->
+      <div class="form-section">
+        <label class="form-label">Priority Level</label>
+        <div class="priority-selector">
+          <div class="priority-btn low">
+            <span class="priority-label">Low</span>
+            <span class="priority-time">3-5 days</span>
+          </div>
+          <div class="priority-btn medium active">
+            <span class="priority-label">Medium</span>
+            <span class="priority-time">1-2 days</span>
+          </div>
+          <div class="priority-btn high">
+            <span class="priority-label">High</span>
+            <span class="priority-time">Same day</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="info-text">💡 Medium priority: Issue affects comfort but not urgent. Expected response within 24-48 hours.</div>
+        </div>
+      </div>
+      
+      <!-- Submit Button -->
+      <button class="submit-button">Submit Request</button>
+    </div>
+  </div>
+</body>
+</html>
