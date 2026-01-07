@@ -1,4 +1,23 @@
 {
   "version": 2,
-  "public": true
+  "builds": [
+    {
+      "src": "pitch.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "app mockups/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/pitch.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
 }
