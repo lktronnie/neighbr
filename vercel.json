@@ -1,15 +1,4 @@
 {
-  "buildCommand": null,
-  "devCommand": null,
-  "installCommand": null,
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/pitch.html"
-    },
-    {
-      "source": "/app mockups/(.*)",
-      "destination": "/app mockups/$1"
-    }
-  ]
+  "version": 2,
+  "public": true
 }
