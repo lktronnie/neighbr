@@ -117,6 +117,40 @@
             transform: translateX(2px);
         }
 
+        /* Language Toggle */
+        .lang-toggle {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 6px;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 32px;
+            min-width: 44px;
+        }
+
+        .lang-btn:hover {
+            color: #1a202c;
+        }
+
+        .lang-btn.active {
+            background: #38a169;
+            color: white;
+        }
+
         /* Hamburger Menu */
         .hamburger {
             display: none;
@@ -1389,9 +1423,13 @@
                 <span class="logo-text">Neighbr</span>
             </div>
             <div class="nav-links">
-                <a href="#product" class="nav-link">Features</a>
-                <a href="#implementation" class="nav-link">Implementation</a>
-                <a href="#demo" class="nav-cta">Request Demo</a>
+                <a href="#product" class="nav-link" data-en="Features" data-zh="功能">Features</a>
+                <a href="#implementation" class="nav-link" data-en="Implementation" data-zh="實施流程">Implementation</a>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage('zh')">中</button>
+                </div>
+                <a href="#demo" class="nav-cta" data-en="Request Demo" data-zh="預約示範">Request Demo</a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span>
@@ -1403,23 +1441,27 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#product" class="nav-link">Features</a>
-        <a href="#implementation" class="nav-link">Implementation</a>
-        <a href="#pricing" class="nav-link">Pricing</a>
-        <a href="#demo" class="nav-cta">Request Demo</a>
+        <div class="lang-toggle" style="margin-bottom: 16px;">
+            <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="switchLanguage('zh')">中</button>
+        </div>
+        <a href="#product" class="nav-link" data-en="Features" data-zh="功能">Features</a>
+        <a href="#implementation" class="nav-link" data-en="Implementation" data-zh="實施流程">Implementation</a>
+        <a href="#pricing" class="nav-link" data-en="Pricing" data-zh="定價">Pricing</a>
+        <a href="#demo" class="nav-cta" data-en="Request Demo" data-zh="預約示範">Request Demo</a>
     </div>
 
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge">⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY</div>
-            <h1>Property Management.<br><span class="highlight">Reimagined.</span></h1>
-            <p class="hero-subtitle">The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨</p>
+            <div class="hero-badge" data-en="⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY" data-zh="⚡ 兩週上線 • 🎁 免費試用90日 • 🔒 企業級保安">⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY</div>
+            <h1 data-en="Property Management.<br><span class='highlight'>Reimagined.</span>" data-zh="物業管理。<br><span class='highlight'>重新定義。</span>">Property Management.<br><span class="highlight">Reimagined.</span></h1>
+            <p class="hero-subtitle" data-en="The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨" data-zh="一站式數碼平台,助香港物業管理公司自動化運作、減輕員工負擔、提升住戶體驗。🏢✨">The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨</p>
             <div class="hero-cta">
-                <a href="#demo" class="btn-primary">Start Your Free 90-Day Trial →</a>
-                <a href="#product" class="btn-secondary">See It In Action</a>
+                <a href="#demo" class="btn-primary" data-en="Start Your Free 90-Day Trial →" data-zh="開始90日免費試用 →">Start Your Free 90-Day Trial →</a>
+                <a href="#product" class="btn-secondary" data-en="See It In Action" data-zh="觀看示範">See It In Action</a>
             </div>
-            <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;">Setup in 2 weeks  •  90 days free  •  Then $168/month</p>
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;" data-en="Setup in 2 weeks  •  90 days free  •  Then $168/month" data-zh="兩週內上線  •  免費試用90日  •  其後每月$168">Setup in 2 weeks  •  90 days free  •  Then $168/month</p>
         </div>
     </div>
 
@@ -1427,28 +1469,28 @@
     <div class="section value-props">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">💪 Why Property Managers Choose Neighbr</div>
-                <h2 class="section-title">Real Results You Can Actually Measure</h2>
-                <p class="section-description">Join the property managers who are crushing their goals while their tenants love them for it.</p>
+                <div class="section-subtitle" data-en="💪 Why Property Managers Choose Neighbr" data-zh="💪 為何物業管理公司選擇Neighbr">💪 Why Property Managers Choose Neighbr</div>
+                <h2 class="section-title" data-en="Real Results You Can Actually Measure" data-zh="實實在在可量度的成效">Real Results You Can Actually Measure</h2>
+                <p class="section-description" data-en="Join the property managers who are crushing their goals while their tenants love them for it." data-zh="加入眾多成績斐然、深受住戶愛戴的物業管理公司行列。">Join the property managers who are crushing their goals while their tenants love them for it.</p>
             </div>
             <div class="value-grid">
                 <div class="value-card">
                     <div class="value-icon">💰</div>
                     <div class="value-metric">40%</div>
-                    <h3>Lower Operating Costs</h3>
-                    <p>Automate manual workflows, reduce phone calls, eliminate paper notices, and cut administrative overhead significantly.</p>
+                    <h3 data-en="Lower Operating Costs" data-zh="節省營運成本">Lower Operating Costs</h3>
+                    <p data-en="Automate manual workflows, reduce phone calls, eliminate paper notices, and cut administrative overhead significantly." data-zh="自動化人手流程、減少電話查詢、取消紙本通告,大幅削減行政開支。">Automate manual workflows, reduce phone calls, eliminate paper notices, and cut administrative overhead significantly.</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon">⚡</div>
                     <div class="value-metric">60%</div>
-                    <h3>Faster Response Times</h3>
-                    <p>Streamlined maintenance ticketing and facility booking reduce staff workload and improve tenant satisfaction scores.</p>
+                    <h3 data-en="Faster Response Times" data-zh="更快回應速度">Faster Response Times</h3>
+                    <p data-en="Streamlined maintenance ticketing and facility booking reduce staff workload and improve tenant satisfaction scores." data-zh="精簡維修工單和設施預訂流程,減輕員工負擔,提升住戶滿意度評分。">Streamlined maintenance ticketing and facility booking reduce staff workload and improve tenant satisfaction scores.</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon">📊</div>
                     <div class="value-metric">100%</div>
-                    <h3>Data Visibility</h3>
-                    <p>Real-time analytics on maintenance trends, facility usage, and tenant engagement help you make data-driven decisions.</p>
+                    <h3 data-en="Data Visibility" data-zh="全面數據可視性">Data Visibility</h3>
+                    <p data-en="Real-time analytics on maintenance trends, facility usage, and tenant engagement help you make data-driven decisions." data-zh="實時維修趨勢、設施使用率和住戶參與度分析,助您作出基於數據的決策。">Real-time analytics on maintenance trends, facility usage, and tenant engagement help you make data-driven decisions.</p>
                 </div>
             </div>
         </div>
@@ -1459,38 +1501,38 @@
         <div class="container">
             <div style="background: linear-gradient(135deg, rgba(139, 196, 138, 0.08), rgba(93, 214, 216, 0.08)); border: 2px solid #8BC48A; border-radius: 20px; padding: 50px; max-width: 900px; margin: 0 auto;">
                 <div style="text-align: center; margin-bottom: 40px;">
-                    <div style="font-size: 28px; font-weight: 800; margin-bottom: 16px; color: #1a202c;">Get Started Risk-Free 🚀</div>
-                    <p style="font-size: 18px; color: #4a5568; line-height: 1.7;">Everything you need to go live in 2 weeks. Then try it free for 90 days.</p>
+                    <div style="font-size: 28px; font-weight: 800; margin-bottom: 16px; color: #1a202c;" data-en="Get Started Risk-Free 🚀" data-zh="零風險開始 🚀">Get Started Risk-Free 🚀</div>
+                    <p style="font-size: 18px; color: #4a5568; line-height: 1.7;" data-en="Everything you need to go live in 2 weeks. Then try it free for 90 days." data-zh="兩星期內上線所需的一切。然後免費試用90日。">Everything you need to go live in 2 weeks. Then try it free for 90 days.</p>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; text-align: left;">
                     <div style="padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
                         <div style="font-size: 32px; margin-bottom: 12px;">⚡</div>
-                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;">Live in 2 Weeks</h4>
-                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;">Fast, hassle-free onboarding with white-glove setup</p>
+                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;" data-en="Live in 2 Weeks" data-zh="兩星期內上線">Live in 2 Weeks</h4>
+                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;" data-en="Fast, hassle-free onboarding with white-glove setup" data-zh="快速、無憂的專人設定服務">Fast, hassle-free onboarding with white-glove setup</p>
                     </div>
                     <div style="padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
                         <div style="font-size: 32px; margin-bottom: 12px;">🎁</div>
-                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;">90 Days Free</h4>
-                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;">Full platform access, then $168/month per building</p>
+                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;" data-en="90 Days Free" data-zh="免費試用90日">90 Days Free</h4>
+                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;" data-en="Full platform access, then $168/month per building" data-zh="完整平台使用權,之後每棟每月$168">Full platform access, then $168/month per building</p>
                     </div>
                     <div style="padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
                         <div style="font-size: 32px; margin-bottom: 12px;">🔒</div>
-                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;">Bank-Level Security</h4>
-                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;">SOC 2 certified, PDPO compliant, AWS hosted</p>
+                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;" data-en="Bank-Level Security" data-zh="銀行級保安">Bank-Level Security</h4>
+                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;" data-en="SOC 2 certified, PDPO compliant, AWS hosted" data-zh="SOC 2認證、符合個人資料條例、AWS託管">SOC 2 certified, PDPO compliant, AWS hosted</p>
                     </div>
                     <div style="padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
                         <div style="font-size: 32px; margin-bottom: 12px;">🤝</div>
-                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;">Zero Contracts</h4>
-                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;">Cancel anytime, no commitments, no hidden fees</p>
+                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;" data-en="Zero Contracts" data-zh="無需合約">Zero Contracts</h4>
+                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;" data-en="Cancel anytime, no commitments, no hidden fees" data-zh="隨時取消、無需承諾、無隱藏費用">Cancel anytime, no commitments, no hidden fees</p>
                     </div>
                     <div style="padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
                         <div style="font-size: 32px; margin-bottom: 12px;">🇭🇰</div>
-                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;">Local Support</h4>
-                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;">Hong Kong team, Cantonese/English/Mandarin</p>
+                        <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a202c;" data-en="Local Support" data-zh="本地支援">Local Support</h4>
+                        <p style="font-size: 15px; color: #4a5568; line-height: 1.6;" data-en="Hong Kong team, Cantonese/English/Mandarin" data-zh="香港團隊,提供粵語/英語/普通話服務">Hong Kong team, Cantonese/English/Mandarin</p>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 40px;">
-                    <a href="#demo" class="btn-primary" style="font-size: 18px; padding: 18px 40px;">Start Your Free 90-Day Trial →</a>
+                    <a href="#demo" class="btn-primary" style="font-size: 18px; padding: 18px 40px;" data-en="Start Your Free 90-Day Trial →" data-zh="開始90日免費試用 →">Start Your Free 90-Day Trial →</a>
                 </div>
             </div>
         </div>
@@ -1584,39 +1626,39 @@
     <div class="section pmc-challenges">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">😅 The Reality</div>
-                <h2 class="section-title">Sound Familiar? We've Got You.</h2>
+                <div class="section-subtitle" data-en="😅 The Reality" data-zh="😅 現實狀況">😅 The Reality</div>
+                <h2 class="section-title" data-en="Sound Familiar? We've Got You." data-zh="似曾相識?我們幫到你。">Sound Familiar? We've Got You.</h2>
             </div>
             <div class="challenge-grid">
                 <div class="challenge-column problems">
-                    <h3>Your Current Challenges</h3>
+                    <h3 data-en="Your Current Challenges" data-zh="你目前面對的挑戰">Your Current Challenges</h3>
                     <div class="challenge-item">
-                        <h4>Staff Burnout & High Turnover</h4>
-                        <p>Your team spends hours on phone calls, WhatsApp messages, and manual paperwork instead of value-added work.</p>
+                        <h4 data-en="Staff Burnout & High Turnover" data-zh="員工疲勞及高流失率">Staff Burnout & High Turnover</h4>
+                        <p data-en="Your team spends hours on phone calls, WhatsApp messages, and manual paperwork instead of value-added work." data-zh="你的團隊花費大量時間接聽電話、回覆WhatsApp訊息和處理人手文書,而非增值工作。">Your team spends hours on phone calls, WhatsApp messages, and manual paperwork instead of value-added work.</p>
                     </div>
                     <div class="challenge-item">
-                        <h4>Rising Operational Costs</h4>
-                        <p>Labor costs increase yearly while profit margins shrink. You need to do more with less.</p>
+                        <h4 data-en="Rising Operational Costs" data-zh="營運成本上漲">Rising Operational Costs</h4>
+                        <p data-en="Labor costs increase yearly while profit margins shrink. You need to do more with less." data-zh="人工成本年年上升,利潤率卻不斷收窄。你需要用更少資源做更多事。">Labor costs increase yearly while profit margins shrink. You need to do more with less.</p>
                     </div>
                     <div class="challenge-item">
-                        <h4>Tenant Complaints & Churn</h4>
-                        <p>Slow response times, poor communication, and missed maintenance requests damage your reputation and increase vacancy rates.</p>
+                        <h4 data-en="Tenant Complaints & Churn" data-zh="住戶投訴及流失">Tenant Complaints & Churn</h4>
+                        <p data-en="Slow response times, poor communication, and missed maintenance requests damage your reputation and increase vacancy rates." data-zh="回應緩慢、溝通不佳、遺漏維修請求,損害你的聲譽並增加空置率。">Slow response times, poor communication, and missed maintenance requests damage your reputation and increase vacancy rates.</p>
                     </div>
                 </div>
 
                 <div class="challenge-column solutions">
-                    <h3>How Neighbr Solves This</h3>
+                    <h3 data-en="How Neighbr Solves This" data-zh="Neighbr如何解決">How Neighbr Solves This</h3>
                     <div class="challenge-item">
-                        <h4>Automated Workflows</h4>
-                        <p>Self-service booking, digital maintenance ticketing, and automated announcements free your team to focus on high-value tasks.</p>
+                        <h4 data-en="Automated Workflows" data-zh="自動化工作流程">Automated Workflows</h4>
+                        <p data-en="Self-service booking, digital maintenance ticketing, and automated announcements free your team to focus on high-value tasks." data-zh="自助預訂、數碼維修工單和自動通告,讓你的團隊專注高價值任務。">Self-service booking, digital maintenance ticketing, and automated announcements free your team to focus on high-value tasks.</p>
                     </div>
                     <div class="challenge-item">
-                        <h4>Reduce Staff Overhead by 30-40%</h4>
-                        <p>One staff member can manage what previously took three. Proven ROI within 6 months.</p>
+                        <h4 data-en="Reduce Staff Overhead by 30-40%" data-zh="減少30-40%員工開支">Reduce Staff Overhead by 30-40%</h4>
+                        <p data-en="One staff member can manage what previously took three. Proven ROI within 6 months." data-zh="一名員工可以管理以往需要三人處理的工作。6個月內證實投資回報。">One staff member can manage what previously took three. Proven ROI within 6 months.</p>
                     </div>
                     <div class="challenge-item">
-                        <h4>Improve Tenant Satisfaction by 60%</h4>
-                        <p>24/7 self-service, real-time tracking, and instant communication make tenants happier and more likely to renew.</p>
+                        <h4 data-en="Improve Tenant Satisfaction by 60%" data-zh="提升60%住戶滿意度">Improve Tenant Satisfaction by 60%</h4>
+                        <p data-en="24/7 self-service, real-time tracking, and instant communication make tenants happier and more likely to renew." data-zh="24/7自助服務、實時追蹤和即時溝通,讓住戶更滿意,更有可能續約。">24/7 self-service, real-time tracking, and instant communication make tenants happier and more likely to renew.</p>
                     </div>
                 </div>
             </div>
@@ -1627,46 +1669,46 @@
     <div class="section product-showcase">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle" style="color: #8BC48A;">✨ Complete Platform</div>
-                <h2 class="section-title">Everything You Need in One Happy Place</h2>
-                <p class="section-description">Replace scattered tools and endless spreadsheets with one beautiful platform your team will actually enjoy using.</p>
+                <div class="section-subtitle" style="color: #8BC48A;" data-en="✨ Complete Platform" data-zh="✨ 完整平台">✨ Complete Platform</div>
+                <h2 class="section-title" data-en="Everything You Need in One Happy Place" data-zh="所需的一切都在這裡">Everything You Need in One Happy Place</h2>
+                <p class="section-description" data-en="Replace scattered tools and endless spreadsheets with one beautiful platform your team will actually enjoy using." data-zh="用一個美觀的平台取代零散工具和無盡的試算表,讓你的團隊真正樂於使用。">Replace scattered tools and endless spreadsheets with one beautiful platform your team will actually enjoy using.</p>
             </div>
             <div class="product-features">
                 <div class="feature-card">
                     <div class="feature-icon">🔧</div>
-                    <h3>Smart Maintenance Management</h3>
-                    <p>Tenants submit issues with photos. You track progress, assign vendors, and monitor resolution times. Auto-notifications keep everyone informed.</p>
-                    <div class="feature-benefit">Benefit: 50% faster resolution times, better vendor accountability</div>
+                    <h3 data-en="Smart Maintenance Management" data-zh="智能維修管理">Smart Maintenance Management</h3>
+                    <p data-en="Tenants submit issues with photos. You track progress, assign vendors, and monitor resolution times. Auto-notifications keep everyone informed." data-zh="住戶提交附照片的問題。你追蹤進度、指派供應商、監察解決時間。自動通知讓所有人知情。">Tenants submit issues with photos. You track progress, assign vendors, and monitor resolution times. Auto-notifications keep everyone informed.</p>
+                    <div class="feature-benefit" data-en="Benefit: 50% faster resolution times, better vendor accountability" data-zh="優勢:解決時間快50%,供應商問責性更佳">Benefit: 50% faster resolution times, better vendor accountability</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📅</div>
-                    <h3>Automated Facility Booking</h3>
-                    <p>24/7 self-service booking with real-time availability. Auto-confirmations, reminders, and cancellation management. No more phone tag.</p>
-                    <div class="feature-benefit">Benefit: Eliminate booking conflicts, reduce front desk hours by 70%</div>
+                    <h3 data-en="Automated Facility Booking" data-zh="自動化設施預訂">Automated Facility Booking</h3>
+                    <p data-en="24/7 self-service booking with real-time availability. Auto-confirmations, reminders, and cancellation management. No more phone tag." data-zh="24/7自助預訂,實時顯示空位。自動確認、提醒和取消管理。無需再打電話追蹤。">24/7 self-service booking with real-time availability. Auto-confirmations, reminders, and cancellation management. No more phone tag.</p>
+                    <div class="feature-benefit" data-en="Benefit: Eliminate booking conflicts, reduce front desk hours by 70%" data-zh="優勢:消除預訂衝突,前台工時減少70%">Benefit: Eliminate booking conflicts, reduce front desk hours by 70%</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📢</div>
-                    <h3>Instant Announcements</h3>
-                    <p>Broadcast critical updates to all tenants instantly. Push notifications ensure 95%+ read rates within hours. No more paper notices.</p>
-                    <div class="feature-benefit">Benefit: Save HK$500+/month on printing, 100% delivery confirmation</div>
+                    <h3 data-en="Instant Announcements" data-zh="即時通告">Instant Announcements</h3>
+                    <p data-en="Broadcast critical updates to all tenants instantly. Push notifications ensure 95%+ read rates within hours. No more paper notices." data-zh="即時向所有住戶廣播重要更新。推送通知確保數小時內95%以上閱讀率。無需再印刷通告。">Broadcast critical updates to all tenants instantly. Push notifications ensure 95%+ read rates within hours. No more paper notices.</p>
+                    <div class="feature-benefit" data-en="Benefit: Save HK$500+/month on printing, 100% delivery confirmation" data-zh="優勢:每月節省HK$500+印刷費,100%送達確認">Benefit: Save HK$500+/month on printing, 100% delivery confirmation</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💬</div>
-                    <h3>Centralized Communication</h3>
-                    <p>All tenant messages in one organized inbox. Message history, attachment support, and auto-routing to the right department.</p>
-                    <div class="feature-benefit">Benefit: End WhatsApp chaos, improve response time tracking</div>
+                    <h3 data-en="Centralized Communication" data-zh="集中通訊">Centralized Communication</h3>
+                    <p data-en="All tenant messages in one organized inbox. Message history, attachment support, and auto-routing to the right department." data-zh="所有住戶訊息集中在一個有序的收件箱。訊息歷史、附件支援和自動轉送到正確部門。">All tenant messages in one organized inbox. Message history, attachment support, and auto-routing to the right department.</p>
+                    <div class="feature-benefit" data-en="Benefit: End WhatsApp chaos, improve response time tracking" data-zh="優勢:終結WhatsApp混亂,改善回應時間追蹤">Benefit: End WhatsApp chaos, improve response time tracking</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Management Dashboard</h3>
-                    <p>Real-time analytics on maintenance costs, facility utilization, response times, and tenant satisfaction. Export reports for building owners.</p>
-                    <div class="feature-benefit">Benefit: Data-driven decisions, impress building owners with metrics</div>
+                    <h3 data-en="Management Dashboard" data-zh="管理儀表板">Management Dashboard</h3>
+                    <p data-en="Real-time analytics on maintenance costs, facility utilization, response times, and tenant satisfaction. Export reports for building owners." data-zh="實時分析維修成本、設施使用率、回應時間和住戶滿意度。匯出報告給業主。">Real-time analytics on maintenance costs, facility utilization, response times, and tenant satisfaction. Export reports for building owners.</p>
+                    <div class="feature-benefit" data-en="Benefit: Data-driven decisions, impress building owners with metrics" data-zh="優勢:數據驅動決策,用數據打動業主">Benefit: Data-driven decisions, impress building owners with metrics</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">👥</div>
-                    <h3>Community Features</h3>
-                    <p>Building bulletin board, polls, and neighbor connections create vibrant communities. Happy tenants renew leases.</p>
-                    <div class="feature-benefit">Benefit: Higher tenant retention, reduced vacancy costs</div>
+                    <h3 data-en="Community Features" data-zh="社區功能">Community Features</h3>
+                    <p data-en="Building bulletin board, polls, and neighbor connections create vibrant communities. Happy tenants renew leases." data-zh="大廈公告板、投票和鄰居聯繫打造活躍社區。快樂的住戶會續約。">Building bulletin board, polls, and neighbor connections create vibrant communities. Happy tenants renew leases.</p>
+                    <div class="feature-benefit" data-en="Benefit: Higher tenant retention, reduced vacancy costs" data-zh="優勢:更高住戶留任率,減少空置成本">Benefit: Higher tenant retention, reduced vacancy costs</div>
                 </div>
             </div>
         </div>
@@ -1676,45 +1718,45 @@
     <div class="section app-mockups" id="product">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle" style="color: #8BC48A;">📱 See It In Action</div>
-                <h2 class="section-title">So Simple, Your Tenants Will Thank You</h2>
-                <p class="section-description">Beautiful design that just works. 85% of tenants are actively using it within the first month. (Including the ones who "don't do technology.")</p>
+                <div class="section-subtitle" style="color: #8BC48A;" data-en="📱 See It In Action" data-zh="📱 實際示範">📱 See It In Action</div>
+                <h2 class="section-title" data-en="So Simple, Your Tenants Will Thank You" data-zh="如此簡單,住戶會感謝你">So Simple, Your Tenants Will Thank You</h2>
+                <p class="section-description" data-en="Beautiful design that just works. 85% of tenants are actively using it within the first month. (Including the ones who &quot;don't do technology.&quot;)" data-zh="美觀的設計,就是好用。首月內85%住戶積極使用。(包括那些「不懂科技」的住戶。)">Beautiful design that just works. 85% of tenants are actively using it within the first month. (Including the ones who "don't do technology.")</p>
             </div>
             <div class="mockup-grid">
                 <div class="mockup-card">
                     <div class="mockup-screen">
                         <iframe src="app mockups/neighbr-app-mockup.html" scrolling="no"></iframe>
                     </div>
-                    <h3>Tenant Dashboard</h3>
-                    <p>Clean home screen with quick access to all features. Personalized for each resident with their bookings and activity.</p>
+                    <h3 data-en="Tenant Dashboard" data-zh="住戶儀表板">Tenant Dashboard</h3>
+                    <p data-en="Clean home screen with quick access to all features. Personalized for each resident with their bookings and activity." data-zh="簡潔主頁,快速存取所有功能。為每位住戶個人化顯示其預訂和活動。">Clean home screen with quick access to all features. Personalized for each resident with their bookings and activity.</p>
                 </div>
                 <div class="mockup-card">
                     <div class="mockup-screen">
                         <iframe src="app mockups/neighbr-maintenance.html" scrolling="no"></iframe>
                     </div>
-                    <h3>Maintenance Reporting</h3>
-                    <p>Simple form with photo upload, priority selection, and real-time status tracking. Tenants love the transparency.</p>
+                    <h3 data-en="Maintenance Reporting" data-zh="維修報告">Maintenance Reporting</h3>
+                    <p data-en="Simple form with photo upload, priority selection, and real-time status tracking. Tenants love the transparency." data-zh="簡單表格,上傳照片、選擇優先度、實時狀態追蹤。住戶喜愛這種透明度。">Simple form with photo upload, priority selection, and real-time status tracking. Tenants love the transparency.</p>
                 </div>
                 <div class="mockup-card">
                     <div class="mockup-screen">
                         <iframe src="app mockups/neighbr-booking.html" scrolling="no"></iframe>
                     </div>
-                    <h3>Facility Booking</h3>
-                    <p>Visual calendar with instant availability. Book in 3 taps. Automatic confirmations and reminders reduce no-shows.</p>
+                    <h3 data-en="Facility Booking" data-zh="設施預訂">Facility Booking</h3>
+                    <p data-en="Visual calendar with instant availability. Book in 3 taps. Automatic confirmations and reminders reduce no-shows." data-zh="視覺化日曆,即時顯示空位。3次點擊完成預訂。自動確認和提醒減少爽約。">Visual calendar with instant availability. Book in 3 taps. Automatic confirmations and reminders reduce no-shows.</p>
                 </div>
                 <div class="mockup-card">
                     <div class="mockup-screen">
                         <iframe src="app mockups/neighbr-bulletin.html" scrolling="no"></iframe>
                     </div>
-                    <h3>Community Board</h3>
-                    <p>Announcements, polls, and neighbor posts in one feed. Filters by category. Increases tenant engagement.</p>
+                    <h3 data-en="Community Board" data-zh="社區公告板">Community Board</h3>
+                    <p data-en="Announcements, polls, and neighbor posts in one feed. Filters by category. Increases tenant engagement." data-zh="通告、投票和鄰居貼文集中在一個動態。按類別篩選。提升住戶參與度。">Announcements, polls, and neighbor posts in one feed. Filters by category. Increases tenant engagement.</p>
                 </div>
                 <div class="mockup-card">
                     <div class="mockup-screen">
                         <iframe src="app mockups/neighbr-chat.html" scrolling="no"></iframe>
                     </div>
-                    <h3>Direct Messaging</h3>
-                    <p>Secure chat with building management. Message history, quick replies, and attachment support for documents.</p>
+                    <h3 data-en="Direct Messaging" data-zh="直接訊息">Direct Messaging</h3>
+                    <p data-en="Secure chat with building management. Message history, quick replies, and attachment support for documents." data-zh="與大廈管理的安全聊天。訊息歷史、快速回覆和文件附件支援。">Secure chat with building management. Message history, quick replies, and attachment support for documents.</p>
                 </div>
             </div>
         </div>
@@ -1724,25 +1766,25 @@
     <div class="section implementation" id="implementation">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">⚡ Fast Onboarding</div>
-                <h2 class="section-title">Live in 2 Weeks. Seriously.</h2>
-                <p class="section-description">We'll have you up and running faster than you can say "property management." (We handle everything.)</p>
+                <div class="section-subtitle" data-en="⚡ Fast Onboarding" data-zh="⚡ 快速上線">⚡ Fast Onboarding</div>
+                <h2 class="section-title" data-en="Live in 2 Weeks. Seriously." data-zh="兩星期內上線。認真的。">Live in 2 Weeks. Seriously.</h2>
+                <p class="section-description" data-en="We'll have you up and running faster than you can say &quot;property management.&quot; (We handle everything.)" data-zh="我們會讓你以比說「物業管理」更快的速度上線運作。(我們處理一切。)">We'll have you up and running faster than you can say "property management." (We handle everything.)</p>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-number">1</div>
                     <div class="timeline-content">
-                        <h3>Setup & Configuration</h3>
-                        <div class="timeline-duration">Week 1</div>
-                        <p>We configure your buildings, import tenant data, and customize the platform to match your branding.</p>
+                        <h3 data-en="Setup & Configuration" data-zh="設定及配置">Setup & Configuration</h3>
+                        <div class="timeline-duration" data-en="Week 1" data-zh="第一週">Week 1</div>
+                        <p data-en="We configure your buildings, import tenant data, and customize the platform to match your branding." data-zh="我們配置你的大廈、匯入住戶資料,並按你的品牌定制平台。">We configure your buildings, import tenant data, and customize the platform to match your branding.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-number">2</div>
                     <div class="timeline-content">
-                        <h3>Launch & Support</h3>
-                        <div class="timeline-duration">Week 2</div>
-                        <p>Train your team, roll out to tenants with ready-made materials, and go live with dedicated support.</p>
+                        <h3 data-en="Launch & Support" data-zh="啟動及支援">Launch & Support</h3>
+                        <div class="timeline-duration" data-en="Week 2" data-zh="第二週">Week 2</div>
+                        <p data-en="Train your team, roll out to tenants with ready-made materials, and go live with dedicated support." data-zh="培訓你的團隊,用現成材料向住戶推出,並在專責支援下上線。">Train your team, roll out to tenants with ready-made materials, and go live with dedicated support.</p>
                     </div>
                 </div>
             </div>
@@ -1753,40 +1795,40 @@
     <div class="section trust-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">🔒 Enterprise-Grade Security</div>
-                <h2 class="section-title">Your Tenant Data is in Good Hands</h2>
-                <p class="section-description">Built on enterprise infrastructure with SOC 2 certification, bank-grade encryption, and industry-leading security practices. 🛡️</p>
+                <div class="section-subtitle" data-en="🔒 Enterprise-Grade Security" data-zh="🔒 企業級保安">🔒 Enterprise-Grade Security</div>
+                <h2 class="section-title" data-en="Your Tenant Data is in Good Hands" data-zh="你的住戶資料安全妥善">Your Tenant Data is in Good Hands</h2>
+                <p class="section-description" data-en="Built on enterprise infrastructure with SOC 2 certification, bank-grade encryption, and industry-leading security practices. 🛡️" data-zh="建基於企業基建,具備SOC 2認證、銀行級加密和業界領先的保安措施。🛡️">Built on enterprise infrastructure with SOC 2 certification, bank-grade encryption, and industry-leading security practices. 🛡️</p>
             </div>
             <div class="trust-grid">
                 <div class="trust-card">
                     <div class="trust-icon">🔒</div>
-                    <h3>SOC 2 Type II Certified</h3>
-                    <p>Independently audited and certified for security, availability, and confidentiality. We meet the highest industry standards for data protection.</p>
+                    <h3 data-en="SOC 2 Type II Certified" data-zh="SOC 2 Type II 認證">SOC 2 Type II Certified</h3>
+                    <p data-en="Independently audited and certified for security, availability, and confidentiality. We meet the highest industry standards for data protection." data-zh="經獨立審計並獲安全性、可用性和保密性認證。我們符合業界最高的數據保護標準。">Independently audited and certified for security, availability, and confidentiality. We meet the highest industry standards for data protection.</p>
                 </div>
                 <div class="trust-card">
                     <div class="trust-icon">🛡️</div>
-                    <h3>Bank-Grade Encryption</h3>
-                    <p>All data is encrypted in transit (TLS) and at rest (AES-256). Your tenant information is protected with the same encryption standards banks use.</p>
+                    <h3 data-en="Bank-Grade Encryption" data-zh="銀行級加密">Bank-Grade Encryption</h3>
+                    <p data-en="All data is encrypted in transit (TLS) and at rest (AES-256). Your tenant information is protected with the same encryption standards banks use." data-zh="所有數據在傳輸(TLS)和儲存(AES-256)時都經過加密。你的住戶資料受到銀行使用的相同加密標準保護。">All data is encrypted in transit (TLS) and at rest (AES-256). Your tenant information is protected with the same encryption standards banks use.</p>
                 </div>
                 <div class="trust-card">
                     <div class="trust-icon">🇭🇰</div>
-                    <h3>PDPO Ready</h3>
-                    <p>Built to support Hong Kong Personal Data Privacy Ordinance compliance. We provide the tools and infrastructure to help you meet local data protection regulations.</p>
+                    <h3 data-en="PDPO Ready" data-zh="符合個人資料條例">PDPO Ready</h3>
+                    <p data-en="Built to support Hong Kong Personal Data Privacy Ordinance compliance. We provide the tools and infrastructure to help you meet local data protection regulations." data-zh="為支援香港《個人資料(私隱)條例》合規而設。我們提供工具和基建,協助你符合本地數據保護法規。">Built to support Hong Kong Personal Data Privacy Ordinance compliance. We provide the tools and infrastructure to help you meet local data protection regulations.</p>
                 </div>
                 <div class="trust-card">
                     <div class="trust-icon">☁️</div>
-                    <h3>Enterprise Cloud Infrastructure</h3>
-                    <p>Hosted on AWS infrastructure with enterprise-grade reliability. 99.9% uptime commitment, automatic redundancy, and disaster recovery included.</p>
+                    <h3 data-en="Enterprise Cloud Infrastructure" data-zh="企業雲端基建">Enterprise Cloud Infrastructure</h3>
+                    <p data-en="Hosted on AWS infrastructure with enterprise-grade reliability. 99.9% uptime commitment, automatic redundancy, and disaster recovery included." data-zh="託管於AWS基建,提供企業級可靠性。承諾99.9%正常運行時間,包括自動冗餘和災難恢復。">Hosted on AWS infrastructure with enterprise-grade reliability. 99.9% uptime commitment, automatic redundancy, and disaster recovery included.</p>
                 </div>
                 <div class="trust-card">
                     <div class="trust-icon">🔐</div>
-                    <h3>Access Controls & Audit Logs</h3>
-                    <p>Role-based permissions, two-factor authentication, and complete audit trails. You control exactly who can access what data.</p>
+                    <h3 data-en="Access Controls & Audit Logs" data-zh="存取控制及審計日誌">Access Controls & Audit Logs</h3>
+                    <p data-en="Role-based permissions, two-factor authentication, and complete audit trails. You control exactly who can access what data." data-zh="基於角色的權限、雙重認證和完整審計記錄。你完全控制誰可以存取哪些數據。">Role-based permissions, two-factor authentication, and complete audit trails. You control exactly who can access what data.</p>
                 </div>
                 <div class="trust-card">
                     <div class="trust-icon">🔄</div>
-                    <h3>Automated Daily Backups</h3>
-                    <p>Your data is backed up daily with 30-day retention. Point-in-time recovery available. Complete disaster recovery plan included.</p>
+                    <h3 data-en="Automated Daily Backups" data-zh="每日自動備份">Automated Daily Backups</h3>
+                    <p data-en="Your data is backed up daily with 30-day retention. Point-in-time recovery available. Complete disaster recovery plan included." data-zh="你的數據每日備份,保留30天。可進行時點恢復。包括完整災難恢復計劃。">Your data is backed up daily with 30-day retention. Point-in-time recovery available. Complete disaster recovery plan included.</p>
                 </div>
             </div>
         </div>
@@ -1939,15 +1981,15 @@
     <div class="cta-section" id="demo">
         <div class="container">
             <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-                <h2 style="font-size: 48px; margin-bottom: 20px;">Ready to Make Your Life Way Easier? 🚀</h2>
-                <p style="font-size: 22px; opacity: 0.95; margin-bottom: 40px;">
+                <h2 style="font-size: 48px; margin-bottom: 20px;" data-en="Ready to Make Your Life Way Easier? 🚀" data-zh="準備好讓生活輕鬆得多?🚀">Ready to Make Your Life Way Easier? 🚀</h2>
+                <p style="font-size: 22px; opacity: 0.95; margin-bottom: 40px;" data-en="Try Neighbr free for 90 days. Setup in 2 weeks. Then just $168/month per building. Simple as that." data-zh="免費試用Neighbr 90日。兩星期內上線。其後每棟每月只需$168。就是這麼簡單。">
                     Try Neighbr free for 90 days. Setup in 2 weeks. Then just $168/month per building. Simple as that.
                 </p>
                 <div class="cta-form">
-                    <input type="email" class="cta-input" placeholder="Your work email" style="font-size: 18px;">
-                    <a href="mailto:partners@neighbr.hk?subject=Free 90-Day Trial Request&body=I'm interested in trying Neighbr for my building(s).%0D%0A%0D%0ABuilding name:%0D%0ANumber of units:%0D%0AYour role:%0D%0APhone number:%0D%0A%0D%0ABest time to call:" class="btn-primary" style="font-size: 18px; white-space: nowrap;">Start Free Trial →</a>
+                    <input type="email" class="cta-input" placeholder="Your work email" style="font-size: 18px;" data-en="Your work email" data-zh="你的工作電郵">
+                    <a href="mailto:partners@neighbr.hk?subject=Free 90-Day Trial Request&body=I'm interested in trying Neighbr for my building(s).%0D%0A%0D%0ABuilding name:%0D%0ANumber of units:%0D%0AYour role:%0D%0APhone number:%0D%0A%0D%0ABest time to call:" class="btn-primary" style="font-size: 18px; white-space: nowrap;" data-en="Start Free Trial →" data-zh="開始免費試用 →">Start Free Trial →</a>
                 </div>
-                <p style="margin-top: 30px; font-size: 15px; opacity: 0.8;">
+                <p style="margin-top: 30px; font-size: 15px; opacity: 0.8;" data-en="✓ Live in 2 weeks  •  ✓ 90 days free  •  ✓ Then just $168/month  •  ✓ Bank-level security" data-zh="✓ 兩星期內上線  •  ✓ 免費試用90日  •  ✓ 其後每月只需$168  •  ✓ 銀行級保安">
                     ✓ Live in 2 weeks  •  ✓ 90 days free  •  ✓ Then just $168/month  •  ✓ Bank-level security
                 </p>
             </div>
@@ -1959,31 +2001,31 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Neighbr</h4>
-                <p>The modern property management platform built specifically for Hong Kong.</p>
-                <p style="margin-top: 20px;">Building better communities, one building at a time.</p>
+                <p data-en="The modern property management platform built specifically for Hong Kong." data-zh="專為香港而設的現代物業管理平台。">The modern property management platform built specifically for Hong Kong.</p>
+                <p style="margin-top: 20px;" data-en="Building better communities, one building at a time." data-zh="逐棟大廈打造更美好社區。">Building better communities, one building at a time.</p>
             </div>
             <div class="footer-section">
-                <h4>Product</h4>
-                <a href="#product">Features</a>
-                <a href="#implementation">Implementation</a>
-                <a href="#demo">Request Demo</a>
+                <h4 data-en="Product" data-zh="產品">Product</h4>
+                <a href="#product" data-en="Features" data-zh="功能">Features</a>
+                <a href="#implementation" data-en="Implementation" data-zh="實施流程">Implementation</a>
+                <a href="#demo" data-en="Request Demo" data-zh="預約示範">Request Demo</a>
             </div>
             <div class="footer-section">
-                <h4>Company</h4>
-                <a href="#about">About Us</a>
-                <a href="#case-studies">Case Studies</a>
-                <a href="#support">Support</a>
-                <a href="#contact">Contact</a>
+                <h4 data-en="Company" data-zh="公司">Company</h4>
+                <a href="#about" data-en="About Us" data-zh="關於我們">About Us</a>
+                <a href="#case-studies" data-en="Case Studies" data-zh="個案研究">Case Studies</a>
+                <a href="#support" data-en="Support" data-zh="支援">Support</a>
+                <a href="#contact" data-en="Contact" data-zh="聯絡">Contact</a>
             </div>
             <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: partners@neighbr.hk</p>
-                <p>Office: Hong Kong</p>
-                <p style="margin-top: 12px;">Support: Available 24/7</p>
+                <h4 data-en="Contact" data-zh="聯絡">Contact</h4>
+                <p data-en="Email: partners@neighbr.hk" data-zh="電郵: partners@neighbr.hk">Email: partners@neighbr.hk</p>
+                <p data-en="Office: Hong Kong" data-zh="辦公室: 香港">Office: Hong Kong</p>
+                <p style="margin-top: 12px;" data-en="Support: Available 24/7" data-zh="支援: 24/7全天候">Support: Available 24/7</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Neighbr. All rights reserved. | <a href="#privacy" style="color: #8BC48A;">Privacy Policy</a> | <a href="#terms" style="color: #8BC48A;">Terms of Service</a></p>
+            <p data-en="&copy; 2026 Neighbr. All rights reserved. | <a href='#privacy' style='color: #8BC48A;'>Privacy Policy</a> | <a href='#terms' style='color: #8BC48A;'>Terms of Service</a>" data-zh="&copy; 2026 Neighbr. 版權所有。 | <a href='#privacy' style='color: #8BC48A;'>私隱政策</a> | <a href='#terms' style='color: #8BC48A;'>服務條款</a>">&copy; 2026 Neighbr. All rights reserved. | <a href="#privacy" style="color: #8BC48A;">Privacy Policy</a> | <a href="#terms" style="color: #8BC48A;">Terms of Service</a></p>
         </div>
     </div>
 
@@ -2049,6 +2091,72 @@
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = '';
+            }
+        });
+
+        // Language switching functionality
+        let currentLanguage = localStorage.getItem('lang') || 'en';
+
+        // Comprehensive translations object
+        const translations = {
+            en: {
+                // Navigation
+                'nav-features': 'Features',
+                'nav-implementation': 'Implementation',
+                'nav-demo': 'Request Demo',
+
+                // Hero
+                'hero-badge': '⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY',
+                'hero-title': 'Property Management.<br><span class="highlight">Reimagined.</span>',
+                'hero-subtitle': 'The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨',
+                'hero-cta-primary': 'Start Your Free 90-Day Trial →',
+                'hero-cta-secondary': 'See It In Action',
+                'hero-subtext': 'Setup in 2 weeks  •  90 days free  •  Then $168/month'
+            },
+            zh: {
+                // Navigation
+                'nav-features': '功能',
+                'nav-implementation': '實施流程',
+                'nav-demo': '預約示範',
+
+                // Hero
+                'hero-badge': '⚡ 兩週上線 • 🎁 免費試用90日 • 🔒 企業級保安',
+                'hero-title': '物業管理。<br><span class="highlight">重新定義。</span>',
+                'hero-subtitle': '一站式數碼平台,助香港物業管理公司自動化運作、減輕員工負擔、提升住戶體驗。🏢✨',
+                'hero-cta-primary': '開始90日免費試用 →',
+                'hero-cta-secondary': '觀看示範',
+                'hero-subtext': '兩週內上線  •  免費試用90日  •  其後每月$168'
+            }
+        };
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('lang', lang);
+
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === (lang === 'en' ? 'EN' : '中')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all elements with data-en and data-zh attributes
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute('data-' + lang);
+                } else if (el.innerHTML) {
+                    el.innerHTML = el.getAttribute('data-' + lang);
+                } else {
+                    el.textContent = el.getAttribute('data-' + lang);
+                }
+            });
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (currentLanguage === 'zh') {
+                switchLanguage('zh');
             }
         });
     </script>
