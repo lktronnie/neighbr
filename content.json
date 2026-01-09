@@ -1,0 +1,418 @@
+{
+  "navigation": {
+    "features": {
+      "en": "Features",
+      "zh": "功能"
+    },
+    "implementation": {
+      "en": "Implementation",
+      "zh": "實施流程"
+    },
+    "pricing": {
+      "en": "Pricing",
+      "zh": "定價"
+    },
+    "requestDemo": {
+      "en": "Request Demo",
+      "zh": "預約示範"
+    }
+  },
+  "hero": {
+    "badge": {
+      "en": "⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY",
+      "zh": "⚡ 兩週上線 • 🎁 免費試用90日 • 🔒 企業級保安"
+    },
+    "title": {
+      "en": "Property Management.<br><span class='highlight'>Reimagined.</span>",
+      "zh": "物業管理。<br><span class='highlight'>重新定義。</span>"
+    },
+    "subtitle": {
+      "en": "The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨",
+      "zh": "一站式數碼平台,助香港物業管理公司自動化運作、減輕員工負擔、提升住戶體驗。🏢✨"
+    },
+    "ctaPrimary": {
+      "en": "Start Your Free 90-Day Trial →",
+      "zh": "開始90日免費試用 →"
+    },
+    "ctaSecondary": {
+      "en": "See It In Action",
+      "zh": "觀看示範"
+    },
+    "subtext": {
+      "en": "Setup in 2 weeks  •  90 days free  •  Then $168/month",
+      "zh": "兩週內上線  •  免費試用90日  •  其後每月$168"
+    }
+  },
+  "valueProps": {
+    "subtitle": {
+      "en": "💪 Why Property Managers Choose Neighbr",
+      "zh": "💪 為何物業管理公司選擇Neighbr"
+    },
+    "title": {
+      "en": "Real Results You Can Actually Measure",
+      "zh": "實實在在可量度的成效"
+    },
+    "description": {
+      "en": "Join the property managers who are crushing their goals while their tenants love them for it.",
+      "zh": "加入眾多成績斐然、深受住戶愛戴的物業管理公司行列。"
+    },
+    "cards": [
+      {
+        "icon": "💰",
+        "metric": "40%",
+        "title": {
+          "en": "Lower Operating Costs",
+          "zh": "節省營運成本"
+        },
+        "description": {
+          "en": "Automate manual workflows, reduce phone calls, eliminate paper notices, and cut administrative overhead significantly.",
+          "zh": "自動化人手流程、減少電話查詢、取消紙本通告,大幅削減行政開支。"
+        }
+      },
+      {
+        "icon": "⚡",
+        "metric": "60%",
+        "title": {
+          "en": "Faster Response Times",
+          "zh": "更快回應速度"
+        },
+        "description": {
+          "en": "Streamlined maintenance ticketing and facility booking reduce staff workload and improve tenant satisfaction scores.",
+          "zh": "精簡維修工單和設施預訂流程,減輕員工負擔,提升住戶滿意度評分。"
+        }
+      },
+      {
+        "icon": "📊",
+        "metric": "100%",
+        "title": {
+          "en": "Data Visibility",
+          "zh": "全面數據可視性"
+        },
+        "description": {
+          "en": "Real-time analytics on maintenance trends, facility usage, and tenant engagement help you make data-driven decisions.",
+          "zh": "實時維修趨勢、設施使用率和住戶參與度分析,助您作出基於數據的決策。"
+        }
+      }
+    ]
+  },
+  "getStarted": {
+    "title": {
+      "en": "Get Started Risk-Free 🚀",
+      "zh": "零風險開始 🚀"
+    },
+    "subtitle": {
+      "en": "Everything you need to go live in 2 weeks. Then try it free for 90 days.",
+      "zh": "兩星期內上線所需的一切。然後免費試用90日。"
+    },
+    "cards": [
+      {
+        "icon": "⚡",
+        "title": {
+          "en": "Live in 2 Weeks",
+          "zh": "兩星期內上線"
+        },
+        "description": {
+          "en": "Fast, hassle-free onboarding with white-glove setup",
+          "zh": "快速、無憂的專人設定服務"
+        }
+      },
+      {
+        "icon": "🎁",
+        "title": {
+          "en": "90 Days Free",
+          "zh": "免費試用90日"
+        },
+        "description": {
+          "en": "Full platform access, then $168/month per building",
+          "zh": "完整平台使用權,之後每棟每月$168"
+        }
+      },
+      {
+        "icon": "🔒",
+        "title": {
+          "en": "Bank-Level Security",
+          "zh": "銀行級保安"
+        },
+        "description": {
+          "en": "SOC 2 certified, PDPO compliant, AWS hosted",
+          "zh": "SOC 2認證、符合個人資料條例、AWS託管"
+        }
+      },
+      {
+        "icon": "🤝",
+        "title": {
+          "en": "Zero Contracts",
+          "zh": "無需合約"
+        },
+        "description": {
+          "en": "Cancel anytime, no commitments, no hidden fees",
+          "zh": "隨時取消、無需承諾、無隱藏費用"
+        }
+      },
+      {
+        "icon": "🇭🇰",
+        "title": {
+          "en": "Local Support",
+          "zh": "本地支援"
+        },
+        "description": {
+          "en": "Hong Kong team, Cantonese/English/Mandarin",
+          "zh": "香港團隊,提供粵語/英語/普通話服務"
+        }
+      }
+    ],
+    "ctaButton": {
+      "en": "Start Your Free 90-Day Trial →",
+      "zh": "開始90日免費試用 →"
+    }
+  },
+  "whyNeighbr": {
+    "subtitle": {
+      "en": "🚀 GET STARTED",
+      "zh": "🚀 立即開始"
+    },
+    "title": {
+      "en": "Try Neighbr Risk-Free for 90 Days",
+      "zh": "免費試用 Neighbr 90 日，零風險"
+    },
+    "description": {
+      "en": "Experience the full platform at no cost. Go live in 2 weeks with our proven onboarding process.",
+      "zh": "免費體驗完整平台功能。我們成熟的上線流程，兩星期內正式啟用。"
+    },
+    "cards": [
+      {
+        "icon": "⚡",
+        "title": {
+          "en": "Live in 2 Weeks",
+          "zh": "兩星期內正式啟用"
+        },
+        "description": {
+          "en": "Our streamlined onboarding process gets you operational fast. We handle 100% of setup: data import, staff training, tenant onboarding, and technical configuration.",
+          "zh": "我們精簡的上線流程讓您快速投入運作。我們全程代勞：數據導入、員工培訓、住戶登記、技術配置，100% 由我們處理。"
+        },
+        "footer": {
+          "en": "Average setup time: 10 business days",
+          "zh": "平均設置時間：10 個工作天"
+        }
+      },
+      {
+        "icon": "🎁",
+        "title": {
+          "en": "90 Days Free Trial",
+          "zh": "90 日免費試用"
+        },
+        "description": {
+          "en": "Full access to all features for 3 months. No feature limitations. Test everything risk-free before committing.",
+          "zh": "三個月內無限制使用所有功能。無任何功能限制。正式付費前零風險試用所有服務。"
+        },
+        "footer": {
+          "en": "Then just $168/month per building",
+          "zh": "之後每棟大廈每月只需 $168"
+        }
+      },
+      {
+        "icon": "🔒",
+        "title": {
+          "en": "Bank-Level Security",
+          "zh": "銀行級別保安"
+        },
+        "description": {
+          "en": "SOC 2 Type II certified. PDPO ready with enterprise infrastructure. Bank-grade encryption (AES-256). AWS hosted with 99.9% uptime SLA. Your tenant data is protected with industry-leading security practices.",
+          "zh": "SOC 2 Type II 認證。符合《私隱條例》要求的企業級基建。銀行級加密技術(AES-256)。AWS 託管,保證 99.9% 正常運行時間。您的住戶資料受業界領先的保安措施保護。"
+        },
+        "footer": {
+          "en": "Enterprise-grade infrastructure",
+          "zh": "企業級基礎設施"
+        }
+      }
+    ],
+    "timelineTitle": {
+      "en": "Your 2-Week Onboarding Timeline:",
+      "zh": "您的兩星期上線時間表："
+    },
+    "timeline": [
+      {
+        "period": {
+          "en": "✓ Days 1-3:",
+          "zh": "✓ 第 1-3 日:"
+        },
+        "items": {
+          "en": "• 30-min kickoff call<br>• Platform customization<br>• Data import & setup<br>• Branded tenant materials",
+          "zh": "• 30 分鐘啟動會議<br>• 平台個人化設定<br>• 數據導入及設置<br>• 製作大廈品牌住戶資料"
+        }
+      },
+      {
+        "period": {
+          "en": "✓ Days 4-7:",
+          "zh": "✓ 第 4-7 日:"
+        },
+        "items": {
+          "en": "• Staff training (1 hour)<br>• System testing<br>• QR codes & posters<br>• Launch communications ready",
+          "zh": "• 員工培訓(1 小時)<br>• 系統測試<br>• QR 碼及宣傳海報<br>• 準備推出通訊"
+        }
+      },
+      {
+        "period": {
+          "en": "✓ Days 8-14:",
+          "zh": "✓ 第 8-14 日:"
+        },
+        "items": {
+          "en": "• Tenant rollout begins<br>• Live support & monitoring<br>• Adoption tracking<br>• You're live! 🎉",
+          "zh": "• 開始推廣予住戶<br>• 實時支援及監察<br>• 追蹤使用率<br>• 正式啟用! 🎉"
+        }
+      }
+    ],
+    "ctaButton": {
+      "en": "Start Your Free 90-Day Trial →",
+      "zh": "開始您的 90 日免費試用 →"
+    },
+    "ctaSubtext": {
+      "en": "Live in 2 weeks • $168/month per building after trial",
+      "zh": "兩星期內啟用 • 試用期後每棟大廈每月 $168"
+    }
+  },
+  "faq": {
+    "subtitle": {
+      "en": "❓ COMMON QUESTIONS",
+      "zh": "❓ 常見問題"
+    },
+    "title": {
+      "en": "Let's Talk About The Stuff You're Actually Wondering",
+      "zh": "講吓您真正想知嘅嘢"
+    },
+    "description": {
+      "en": "No fluff, no jargon. Just honest answers to the questions you're too polite to ask. 😊",
+      "zh": "唔講廢話,唔講術語。直接回答您唔好意思問嘅問題。😊"
+    },
+    "questions": [
+      {
+        "question": {
+          "en": "What if my tenants are elderly and don't use apps?",
+          "zh": "如果我嘅住戶年紀大,唔識用 app 點算?"
+        },
+        "answer": {
+          "en": "Great question! Our beta buildings had 30%+ residents aged 65+, and we achieved 82% adoption. We provide large-print guides, in-person lobby demos, and a dedicated support hotline. Plus, the app is designed with elderly users in mind—large text, simple navigation, Cantonese interface. Most \"non-tech\" residents use it daily after week 1.",
+          "zh": "好問題!我們測試期的大廈有 30% 以上係 65 歲以上居民,我們都達到 82% 使用率。我們提供大字版指南、大堂即場示範,同埋專屬支援熱線。而且個 app 專為長者而設—大字體、簡單操作、廣東話介面。大部分「唔識科技」嘅居民喺第一星期後已經日日用。"
+        }
+      },
+      {
+        "question": {
+          "en": "We already use WhatsApp. Why switch?",
+          "zh": "我哋已經用緊 WhatsApp,點解要轉?"
+        },
+        "answer": {
+          "en": "You don't have to choose! Many managers use both initially. But here's what changes: WhatsApp becomes \"nice to have\" instead of essential. With Neighbr, you get organized maintenance tracking (not screenshot chaos), scheduled announcements (not interrupting tenants at midnight), searchable history (not scrolling through 1,000 messages), and analytics (not guessing what's working). After 2 weeks, most teams barely open WhatsApp.",
+          "zh": "您唔需要揀!好多管理員初期會兩樣都用。不過以下係會改變嘅地方:WhatsApp 會變成「有就最好」而唔係「必須」。有咗 Neighbr,您會有:有系統嘅維修追蹤(唔係截圖亂咁嚟)、預定時間嘅通告(唔係半夜三更打擾住戶)、可搜尋嘅歷史紀錄(唔使撳千幾條訊息)、同埋數據分析(唔使靠估)。兩星期後,大部分團隊基本上唔使點開 WhatsApp。"
+        }
+      },
+      {
+        "question": {
+          "en": "What if only 50% of tenants adopt it?",
+          "zh": "如果淨係一半住戶肯用點算?"
+        },
+        "answer": {
+          "en": "Then you get your money back. We guarantee 80%+ adoption in 30 days. But realistically, here's what happens: Week 1, 40% sign up (early adopters). Week 2, they start using facility booking and love it. Week 3, word spreads—\"Did you book the BBQ pit on the app?\" Week 4, you're at 85%. Tenants adopt because it makes THEIR lives easier, not because you force them.",
+          "zh": "咁您就拎返全數退款。我們保證 30 日內 80% 以上使用率。但實際上通常會係咁:第 1 星期,40% 登記(早期用戶)。第 2 星期,佢哋開始用設施預訂功能,好鍾意。第 3 星期,開始口耳相傳—「你喺 app 度 book 咗 BBQ 場未?」第 4 星期,已經去到 85%。住戶會用係因為呢樣嘢令佢哋自己方便,唔係因為您逼佢哋用。"
+        }
+      },
+      {
+        "question": {
+          "en": "Can we cancel if it doesn't work out?",
+          "zh": "如果唔啱用,可以取消嗎?"
+        },
+        "answer": {
+          "en": "Absolutely. Zero contracts. Cancel anytime. During your 90-day free pilot, there's nothing to cancel—it's free. After that, if you continue, it's month-to-month. We'll even help export your data if you decide to leave. (Though we've never had a building cancel after seeing results.)",
+          "zh": "當然可以。無合約綁定。隨時取消。喺您 90 日免費試用期間,根本無嘢需要取消—因為免費。之後如果繼續用,係逐月計。如果您決定停用,我們仲會幫您匯出資料。(不過我們從未試過有大廈睇到成效後取消。)"
+        }
+      },
+      {
+        "question": {
+          "en": "Do we need to change our current processes?",
+          "zh": "我哋需要改變現有嘅工作流程嗎?"
+        },
+        "answer": {
+          "en": "Nope. Neighbr adapts to how YOU work, not the other way around. Keep using your current vendor management system, your accounting software, your existing workflows. We integrate alongside them. Think of us as adding a better \"front door\" for tenant interactions, not rebuilding your entire house.",
+          "zh": "唔需要。Neighbr 配合您嘅工作方式,唔係要您遷就我們。繼續用您現有嘅供應商管理系統、會計軟件、既有流程。我們係同佢哋並行整合。您可以將我們想像成為住戶互動加咗一道更好嘅「大門」,唔係將成間屋拆咗重建。"
+        }
+      },
+      {
+        "question": {
+          "en": "How much does it really cost after the free trial?",
+          "zh": "免費試用期後實際收費係幾多?"
+        },
+        "answer": {
+          "en": "Simple, transparent pricing: <strong>$168/month per building</strong>. That's it. No hidden fees, no per-unit charges, no surprise costs. For a 100-unit building, that's less than $1.70/unit/month—less than you spend on printing notices. Compare that to saving 15+ staff hours weekly (HK$8,000+/month value). ROI is typically 10:1 in the first year.",
+          "zh": "簡單透明收費:每棟大廈每月 <strong>$168</strong>。就係咁多。無隱藏收費,無按單位收費,無突如其來嘅額外費用。以一棟 100 戶大廈計,每單位每月唔使 $1.70—仲平過您印通告嘅成本。對比每星期節省 15+ 小時人手(每月價值 HK$8,000+)。首年投資回報率通常係 10:1。"
+        }
+      },
+      {
+        "question": {
+          "en": "What makes you different from [other property management software]?",
+          "zh": "你哋同[其他物業管理軟件]有咩唔同?"
+        },
+        "answer": {
+          "en": "Three things: (1) We're built FOR Hong Kong—Cantonese-first, designed for HK buildings, local support team. (2) Tenant-facing—most \"property management software\" is admin-only. We give tenants self-service. (3) Adoption guarantee—we don't just sell software and disappear. We guarantee it works, or you don't pay.",
+          "zh": "三大分別:(1)我們係專為香港而設—廣東話優先、為香港大廈度身訂造、本地支援團隊。(2)面向住戶—大部分「物業管理軟件」淨係管理員用。我們俾住戶自助服務。(3)使用率保證—我們唔係賣完軟件就消失。我們保證有效,唔係就唔使畀錢。"
+        }
+      }
+    ]
+  },
+  "footer": {
+    "tagline": {
+      "en": "The modern property management platform built specifically for Hong Kong.",
+      "zh": "專為香港而設的現代物業管理平台。"
+    },
+    "mission": {
+      "en": "Building better communities, one building at a time.",
+      "zh": "逐棟大廈打造更美好社區。"
+    },
+    "product": {
+      "en": "Product",
+      "zh": "產品"
+    },
+    "company": {
+      "en": "Company",
+      "zh": "公司"
+    },
+    "contact": {
+      "en": "Contact",
+      "zh": "聯絡"
+    },
+    "aboutUs": {
+      "en": "About Us",
+      "zh": "關於我們"
+    },
+    "caseStudies": {
+      "en": "Case Studies",
+      "zh": "個案研究"
+    },
+    "support": {
+      "en": "Support",
+      "zh": "支援"
+    },
+    "email": {
+      "en": "Email: partners@neighbr.hk",
+      "zh": "電郵: partners@neighbr.hk"
+    },
+    "office": {
+      "en": "Office: Hong Kong",
+      "zh": "辦公室: 香港"
+    },
+    "supportHours": {
+      "en": "Support: Available 24/7",
+      "zh": "支援: 24/7全天候"
+    },
+    "copyright": {
+      "en": "&copy; 2026 Neighbr. All rights reserved.",
+      "zh": "&copy; 2026 Neighbr. 版權所有。"
+    },
+    "privacyPolicy": {
+      "en": "Privacy Policy",
+      "zh": "私隱政策"
+    },
+    "termsOfService": {
+      "en": "Terms of Service",
+      "zh": "服務條款"
+    }
+  }
+}

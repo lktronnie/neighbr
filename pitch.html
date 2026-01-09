@@ -1423,13 +1423,13 @@
                 <span class="logo-text">Neighbr</span>
             </div>
             <div class="nav-links">
-                <a href="#product" class="nav-link" data-en="Features" data-zh="功能">Features</a>
-                <a href="#implementation" class="nav-link" data-en="Implementation" data-zh="實施流程">Implementation</a>
+                <a href="#product" class="nav-link" data-content-key="navigation.features">Features</a>
+                <a href="#implementation" class="nav-link" data-content-key="navigation.implementation">Implementation</a>
                 <div class="lang-toggle">
                     <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
                     <button class="lang-btn" onclick="switchLanguage('zh')">中</button>
                 </div>
-                <a href="#demo" class="nav-cta" data-en="Request Demo" data-zh="預約示範">Request Demo</a>
+                <a href="#demo" class="nav-cta" data-content-key="navigation.requestDemo">Request Demo</a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span>
@@ -1445,23 +1445,23 @@
             <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
             <button class="lang-btn" onclick="switchLanguage('zh')">中</button>
         </div>
-        <a href="#product" class="nav-link" data-en="Features" data-zh="功能">Features</a>
-        <a href="#implementation" class="nav-link" data-en="Implementation" data-zh="實施流程">Implementation</a>
-        <a href="#pricing" class="nav-link" data-en="Pricing" data-zh="定價">Pricing</a>
-        <a href="#demo" class="nav-cta" data-en="Request Demo" data-zh="預約示範">Request Demo</a>
+        <a href="#product" class="nav-link" data-content-key="navigation.features">Features</a>
+        <a href="#implementation" class="nav-link" data-content-key="navigation.implementation">Implementation</a>
+        <a href="#pricing" class="nav-link" data-content-key="navigation.pricing">Pricing</a>
+        <a href="#demo" class="nav-cta" data-content-key="navigation.requestDemo">Request Demo</a>
     </div>
 
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge" data-en="⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY" data-zh="⚡ 兩週上線 • 🎁 免費試用90日 • 🔒 企業級保安">⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY</div>
-            <h1 data-en="Property Management.<br><span class='highlight'>Reimagined.</span>" data-zh="物業管理。<br><span class='highlight'>重新定義。</span>">Property Management.<br><span class="highlight">Reimagined.</span></h1>
-            <p class="hero-subtitle" data-en="The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨" data-zh="一站式數碼平台,助香港物業管理公司自動化運作、減輕員工負擔、提升住戶體驗。🏢✨">The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨</p>
+            <div class="hero-badge" data-content-key="hero.badge">⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY</div>
+            <h1 data-content-key="hero.title">Property Management.<br><span class="highlight">Reimagined.</span></h1>
+            <p class="hero-subtitle" data-content-key="hero.subtitle">The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨</p>
             <div class="hero-cta">
-                <a href="#demo" class="btn-primary" data-en="Start Your Free 90-Day Trial →" data-zh="開始90日免費試用 →">Start Your Free 90-Day Trial →</a>
-                <a href="#product" class="btn-secondary" data-en="See It In Action" data-zh="觀看示範">See It In Action</a>
+                <a href="#demo" class="btn-primary" data-content-key="hero.ctaPrimary">Start Your Free 90-Day Trial →</a>
+                <a href="#product" class="btn-secondary" data-content-key="hero.ctaSecondary">See It In Action</a>
             </div>
-            <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;" data-en="Setup in 2 weeks  •  90 days free  •  Then $168/month" data-zh="兩週內上線  •  免費試用90日  •  其後每月$168">Setup in 2 weeks  •  90 days free  •  Then $168/month</p>
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;" data-content-key="hero.subtext">Setup in 2 weeks  •  90 days free  •  Then $168/month</p>
         </div>
     </div>
 
@@ -2094,40 +2094,70 @@
             }
         });
 
-        // Language switching functionality
+        // Language switching functionality - Dynamic content loading
         let currentLanguage = localStorage.getItem('lang') || 'en';
+        let contentData = null; // Will store loaded content from JSON
 
-        // Comprehensive translations object
-        const translations = {
-            en: {
-                // Navigation
-                'nav-features': 'Features',
-                'nav-implementation': 'Implementation',
-                'nav-demo': 'Request Demo',
-
-                // Hero
-                'hero-badge': '⚡ 2-WEEK SETUP • 🎁 90 DAYS FREE • 🔒 ENTERPRISE SECURITY',
-                'hero-title': 'Property Management.<br><span class="highlight">Reimagined.</span>',
-                'hero-subtitle': 'The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences. 🏢✨',
-                'hero-cta-primary': 'Start Your Free 90-Day Trial →',
-                'hero-cta-secondary': 'See It In Action',
-                'hero-subtext': 'Setup in 2 weeks  •  90 days free  •  Then $168/month'
-            },
-            zh: {
-                // Navigation
-                'nav-features': '功能',
-                'nav-implementation': '實施流程',
-                'nav-demo': '預約示範',
-
-                // Hero
-                'hero-badge': '⚡ 兩週上線 • 🎁 免費試用90日 • 🔒 企業級保安',
-                'hero-title': '物業管理。<br><span class="highlight">重新定義。</span>',
-                'hero-subtitle': '一站式數碼平台,助香港物業管理公司自動化運作、減輕員工負擔、提升住戶體驗。🏢✨',
-                'hero-cta-primary': '開始90日免費試用 →',
-                'hero-cta-secondary': '觀看示範',
-                'hero-subtext': '兩週內上線  •  免費試用90日  •  其後每月$168'
+        // Load content from JSON file
+        async function loadContent() {
+            try {
+                const response = await fetch('content.json');
+                contentData = await response.json();
+                console.log('Content loaded successfully from content.json');
+                return contentData;
+            } catch (error) {
+                console.error('Error loading content.json:', error);
+                // Fallback: use data attributes if JSON fails to load
+                return null;
             }
-        };
+        }
+
+        // Get nested property from object using dot notation (e.g., "hero.title.en")
+        function getNestedValue(obj, path) {
+            return path.split('.').reduce((current, key) => current?.[key], obj);
+        }
+
+        // Update page content based on current language
+        function updateContent(lang) {
+            if (!contentData) {
+                // Fallback to data-attribute method if JSON not loaded
+                document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = el.getAttribute('data-' + lang);
+                    } else if (el.innerHTML) {
+                        el.innerHTML = el.getAttribute('data-' + lang);
+                    } else {
+                        el.textContent = el.getAttribute('data-' + lang);
+                    }
+                });
+                return;
+            }
+
+            // Update content from JSON using data-content-key attributes
+            document.querySelectorAll('[data-content-key]').forEach(el => {
+                const contentKey = el.getAttribute('data-content-key');
+                const content = getNestedValue(contentData, contentKey);
+
+                if (content && content[lang]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = content[lang];
+                    } else {
+                        el.innerHTML = content[lang];
+                    }
+                }
+            });
+
+            // Also update legacy data-attribute elements for backward compatibility
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute('data-' + lang);
+                } else if (el.innerHTML) {
+                    el.innerHTML = el.getAttribute('data-' + lang);
+                } else {
+                    el.textContent = el.getAttribute('data-' + lang);
+                }
+            });
+        }
 
         function switchLanguage(lang) {
             currentLanguage = lang;
@@ -2141,22 +2171,21 @@
                 }
             });
 
-            // Update all elements with data-en and data-zh attributes
-            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = el.getAttribute('data-' + lang);
-                } else if (el.innerHTML) {
-                    el.innerHTML = el.getAttribute('data-' + lang);
-                } else {
-                    el.textContent = el.getAttribute('data-' + lang);
-                }
-            });
+            // Update all content
+            updateContent(lang);
         }
 
         // Initialize language on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load content from JSON
+            await loadContent();
+
+            // Apply current language
             if (currentLanguage === 'zh') {
                 switchLanguage('zh');
+            } else {
+                // Even for English, update content to show JSON-loaded content
+                updateContent('en');
             }
         });
     </script>
