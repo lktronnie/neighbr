@@ -126,14 +126,26 @@ FAQ section has an array of questions. Each has a question and answer in both la
 
 ## Testing Your Changes
 
-### Option 1: Using the Current Setup (requires sync script - see below)
-1. Edit `content.json`
-2. Run the sync script (to be created)
-3. Open `pitch.html` in browser
-4. Click EN/中 toggle to test both languages
+**✅ Dynamic Loading is Now Active!**
 
-### Option 2: Direct HTML Editing (current method)
-For now, continue editing `pitch.html` directly until we implement the auto-sync.
+1. Edit `content.json`
+2. Save the file
+3. Open `pitch.html` in browser (or refresh if already open)
+4. Click EN/中 toggle to test both languages
+5. Your changes appear instantly!
+
+**Important:** You must view the website through a web server (not just by double-clicking the HTML file) for the JSON loading to work. Use one of these methods:
+
+### Method 1: Python Simple Server (Recommended)
+```bash
+cd /Users/ronnielee/neighbr
+python3 -m http.server 8000
+```
+Then open: http://localhost:8000/pitch.html
+
+### Method 2: VS Code Live Server Extension
+1. Install "Live Server" extension in VS Code
+2. Right-click `pitch.html` → "Open with Live Server"
 
 ## Common Sections to Edit
 
@@ -207,6 +219,31 @@ content.json
 
 ---
 
+## Dynamic Loading Status
+
+**✅ Sections Using Dynamic Loading (from content.json):**
+- Navigation menu (desktop and mobile)
+- Hero section (badge, title, subtitle, buttons)
+
+**⏳ Sections Still Using Old Data-Attributes:**
+- Value Propositions
+- Get Started
+- Why Neighbr
+- Challenges
+- Product Features
+- App Mockups
+- Implementation Timeline
+- Security/Trust
+- Tenant Adoption Guarantee
+- FAQ
+- Footer
+
+These sections will still work with the language toggle, but to edit them you currently need to update the `data-en` and `data-zh` attributes in `pitch.html` directly.
+
+**Future Improvement:** Over time, we can migrate more sections to use `content.json` by adding their content to the JSON file and updating the HTML with `data-content-key` attributes.
+
+---
+
 **Pro Tip:** Always make a backup copy of `content.json` before making big changes!
 
-**Note:** Currently, `pitch.html` still uses the old data-attribute system. We can create a script to automatically sync `content.json` to `pitch.html`, or rebuild `pitch.html` to load from this JSON file dynamically. Let me know which approach you prefer!
+**Current Status:** Dynamic loading is active for navigation and hero sections. Edit `content.json` for these sections and refresh to see changes instantly!
