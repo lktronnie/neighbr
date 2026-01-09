@@ -139,17 +139,6 @@
         }
       },
       {
-        "icon": "🤝",
-        "title": {
-          "en": "Zero Contracts",
-          "zh": "無需合約"
-        },
-        "description": {
-          "en": "Cancel anytime, no commitments, no hidden fees",
-          "zh": "隨時取消、無需承諾、無隱藏費用"
-        }
-      },
-      {
         "icon": "🇭🇰",
         "title": {
           "en": "Local Support",
