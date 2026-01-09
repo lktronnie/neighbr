@@ -4,24 +4,57 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Neighbr is a comprehensive property management platform for Hong Kong residential buildings. The application enables:
+Neighbr is a comprehensive property management platform for Hong Kong residential buildings designed to build vibrant communities within estates. The platform helps estates feel more together and premium while improving quality of life for residents.
 
+### Current Phase: Pilot Testing Onboarding
+The immediate goal is to onboard buildings to start pilot testing through the marketing website (`pitch.html`).
+
+### Core Features:
 - **Facility Booking**: Tenants can reserve shared facilities (clubhouse, gym, BBQ areas, etc.)
 - **Maintenance Reporting**: Submit and track maintenance issues with photo uploads
 - **Management Communication**: Property managers can broadcast announcements and updates to all tenants
-- **Tenant Community**: Residents can communicate with neighbors, organize events, and build community
+- **Community Building**: Residents can communicate with neighbors, organize events, and foster neighborhood connections
 - **Building Directory**: Search and view building information with ratings
 
-The project includes a Next.js web application, PostgreSQL database, and Python scripts for enriching building data from Hong Kong government APIs.
+### Ultimate Vision:
+Create a sense of community within each estate, making residents feel connected, improving the premium feel of the property, and enhancing overall quality of life.
+
+The project includes:
+- **Marketing Website** (`pitch.html`) - Bilingual landing page for pilot onboarding
+- **Next.js Web Application** - Main platform (in development)
+- **PostgreSQL Database** - Data storage
+- **Python Scripts** - Building data enrichment from Hong Kong government APIs
 
 ## Tech Stack
 
+### Marketing Website (pitch.html)
+- **Static HTML/CSS/JavaScript** - Single-page landing site for pilot onboarding
+- **Bilingual Support** - English/Traditional Chinese (Cantonese) with language toggle
+- **Dynamic Content Loading** - Content managed via `content.json` for easy editing
+- **Responsive Design** - Mobile-friendly with hamburger menu
+
+### Main Application (Next.js)
 - **Frontend**: Next.js 14 (App Router), React 19, TypeScript, Tailwind CSS 4
 - **Backend**: Next.js API Routes, PostgreSQL with `pg` driver
 - **APIs**: Google Maps Places API, Hong Kong government data APIs (data.gov.hk, HAD services)
 - **Data Processing**: Python scripts using pandas, requests, xml parsing
 
 ## Development Commands
+
+### Marketing Website (pitch.html)
+
+```bash
+# Start local server for testing
+cd /Users/ronnielee/neighbr
+python3 -m http.server 8000
+# Then open: http://localhost:8000/pitch.html
+```
+
+**Content Editing:**
+- Edit `content.json` to update bilingual content (navigation and hero sections use dynamic loading)
+- Other sections use `data-en` and `data-zh` attributes in `pitch.html`
+- See `README-FOR-CONTENT-EDITORS.md` for non-technical editing guide
+- See `CONTENT-EDITING-GUIDE.md` for detailed technical documentation
 
 ### Next.js Application
 
@@ -151,9 +184,57 @@ Currently, Google Maps autocomplete is restricted to `country: 'us'` in `Address
 - Update database with Hong Kong property data from the Python scripts
 - Consider bilingual support (English/Traditional Chinese) for building names
 
+## Marketing Website Content Management
+
+### Bilingual Content System
+
+The website supports English and Traditional Chinese (Cantonese) with a toggle button in the navigation.
+
+**Two Methods for Bilingual Content:**
+
+1. **Dynamic Loading (Modern)** - Used for navigation and hero sections:
+   - Content stored in `content.json`
+   - HTML elements have `data-content-key` attributes
+   - JavaScript fetches JSON and updates content on language switch
+   - Editing: Update `content.json` → Save → Refresh browser
+
+2. **Data Attributes (Legacy)** - Used for most sections currently:
+   - HTML elements have `data-en` and `data-zh` attributes
+   - JavaScript reads attributes and updates innerHTML on language switch
+   - Editing: Update attributes directly in `pitch.html`
+
+**Migration Strategy:**
+As sections are frequently edited, migrate them to `content.json` by:
+1. Adding content to `content.json` under appropriate section
+2. Replacing `data-en`/`data-zh` with `data-content-key="section.field"`
+3. Content automatically loads from JSON
+
+**Language Persistence:**
+- User's language choice saved to `localStorage`
+- Preference restored on page reload
+
+### File Structure
+
+```
+/Users/ronnielee/neighbr/
+├── pitch.html                          # Main landing page
+├── content.json                        # Bilingual content (navigation + hero)
+├── README-FOR-CONTENT-EDITORS.md       # Quick start for non-technical editors
+├── CONTENT-EDITING-GUIDE.md            # Detailed editing documentation
+├── manifest.json                       # PWA manifest
+└── app mockups/
+    ├── neighbr-app-mockup.html         # Tenant dashboard mockup
+    ├── neighbr-booking.html            # Facility booking mockup
+    ├── neighbr-bulletin.html           # Community board mockup
+    ├── neighbr-chat.html               # Messaging mockup
+    └── neighbr-maintenance.html        # Maintenance reporting mockup
+```
+
 ## Notes
 
 - The Next.js app uses the App Router (not Pages Router)
 - Tailwind CSS 4 is configured via `@tailwindcss/postcss`
 - Database connection uses connection pooling (singleton pattern) to avoid exhausting connections
 - Python scripts use `verify=False` for SSL when querying HAD APIs (government certificates may be non-standard)
+- Marketing website requires a local web server (not file://) for JSON loading to work
+- All Hong Kong Cantonese translations provided by specialized translation agent for cultural accuracy
