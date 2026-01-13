@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Reduce costs and increase tenant satisfaction with Neighbr - the all-in-one property management platform for Hong Kong PMCs">
-    <link rel="manifest" href="/manifest.json">
     <title>Neighbr - Property Management Platform for Hong Kong PMCs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -510,19 +509,25 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             column-gap: 40px;
-            row-gap: 16px;
+            row-gap: 0;
             margin-top: 40px;
         }
 
         .challenge-column {
-            display: contents;
+            display: grid;
+            grid-template-rows: auto auto auto auto;
+            gap: 16px;
+            align-content: start;
         }
 
         .challenge-column h3 {
             font-size: 28px;
-            margin-bottom: 16px;
+            margin-bottom: 0;
             color: #1a202c;
             font-weight: 800;
+            height: 72px;
+            display: flex;
+            align-items: center;
         }
 
         .challenge-column.problems h3 {
@@ -1567,7 +1572,7 @@
     </div>
 
     <!-- Get Started Risk-Free Section -->
-    <div class="section" style="background: white;">
+    <div class="section" id="pricing" style="background: white;">
         <div class="container">
             <div style="background: linear-gradient(135deg, rgba(139, 196, 138, 0.08), rgba(93, 214, 216, 0.08)); border: 2px solid #8BC48A; border-radius: 20px; padding: 50px; max-width: 900px; margin: 0 auto;">
                 <div style="text-align: center; margin-bottom: 40px;">
@@ -1604,7 +1609,7 @@
     </div>
 
     <!-- Tenant Onboarding Section -->
-    <div class="section" style="background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);">
+    <div class="section" id="implementation" style="background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);">
         <div class="container">
             <div class="section-header">
                 <div class="section-subtitle" style="color: #38a169;" data-en="📱 TENANT ACCESS" data-zh="📱 住戶使用">📱 TENANT ACCESS</div>
